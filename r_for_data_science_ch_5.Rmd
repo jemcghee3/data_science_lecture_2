@@ -354,6 +354,9 @@ Using ggstance, you have to enter the axes the way you want, since it won't flip
 
 ```{r}
 library(lvplot)
-geom_lv(mapping = aes(x = cut, y = price), data = diamonds)
+ggplot(data = diamonds, mapping = aes(cut, price)) +
+  geom_lv()
 ```
+
+Premium diamonds tend to have higher prices than ideal, probably because they are bigger. The worse-cut diamonds do not have very many values in the higher price ranges.
 
