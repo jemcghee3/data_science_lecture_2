@@ -1,0 +1,37 @@
+---
+title: "Lecture 2 Laboratory"
+output: html_notebook
+---
+
+Task List
+
+C.1 mpg 0
+  Replace them with NA
+C.2 mpg NA
+  You have to think here about what to do.
+  Solution 1: Ignore NA, take the mean, use the mean in place of NA
+  Solution 2: Ignore NA, take the median, use median in place of NA
+C.3 price NA
+  We would like to predict the price with our table, so we should not try to predict the price here. Instead, delete the line.
+  drop_na() function in tidyr library does this.
+C.4 cyl < 0
+  ifelse() or abs() to change the values to positive
+C.5 wt outliers
+  downscale the outliers through dividing by 1000, 100, 10
+  My hypothesis is that these numbers were entered improperly, but we will have to check with the learner whether this was a good decision.
+C.6 gear should be integers
+  Use bins to round the floats to integers.
+
+[T.1 disp - some learners think if a number is very high, then it is very important, so could scale it down. (but only after running the algorithm and seeing if this is an issue)]
+
+Variable Transformation
+VT.1 - style
+  This is an ordered qualitative variable
+  Convert to integer
+VT.2 - type
+  Look at the types
+  "Ship" shouldn't be there, so we remove it
+  We can order the types and justify it in our PDF to turn in. Maybe by intuition (bad) or ordered by average price (better), but justify it.
+VT.3 - brand
+  We cannot order these well
+  Use dummy_cols to make columns for each one.

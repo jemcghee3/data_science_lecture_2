@@ -1,0 +1,86 @@
+---
+title: "Exercise C"
+output: html_notebook
+---
+
+```{r}
+library(nycflights13)
+library(tidyverse)
+```
+
+## Deleting columns
+
+Subset - the part you want to leave out.
+```{r}
+flights
+my_flights <- subset(flights,select=-dep_delay)
+my_flights
+
+myflights <- subset(flights,select=-c(dep_delay, flight))
+myflights
+```
+
+## Transforming departure delay
+
+First remove all rows with missing values and remove rows with extreme negative delay.
+
+```{r}
+my_flights <- filter(flights, ! is.na(dep_time))
+my_flights <- filter(my_flights, dep_delay > -29)
+
+hist(my_flights$dep_delay)
+```
+
+This we can transform into a logarithmic distribution, to be more uniform
+
+```{r}
+hist(log(my_flights$dep_delay))
+
+
+ggplot(
+  data = my_flights,
+  mapping = aes(x = log(dep_delay))
+) +
+  geom_histogram()
+```
+
+We produce NA for negative delay. To remove negative values without deleting them, we shift the delays by the most negative value, so all values are positive.
+
+```{r}
+minimum <- min(my_flights$dep_delay, na.rm = TRUE)
+hist(log(my_flights$dep_delay - minimum))
+```
+
+## Normalizing Departure Time
+
+First, remove missing values (flights that didn't depart)
+```{r}
+my_flights <- filter(flights, ! is.na(dep_time))
+```
+
+Apply min-max normalization to "dep_time" (range of 0000-2359, as in a day)
+New min is 0 and new max is 1.
+Then [(v-0000)/(2359-0000)] * (1 - 0) + 0 = v / 2359
+
+*NOTE: This is bad code as explained just below it!*
+
+```{r}
+my_flights$dep_time <- my_flights$dep_time / 2359
+my_flights
+```
+
+However, the coding of time in integer is not continuous. That is, 1178 does not exist.
+We need to write a conversion function to translate to continuous numbers.
+
+```{r}
+time_conversion <- function(x) {
+  h <- trunc(x/100,0)
+  m <- x-(h*100)
+  r <- m+(h*60)
+  return(r)
+}
+
+my_flights$dep_time <- time_conversion(my_flights$dep_time) / (24*60)
+my_flights
+```
+

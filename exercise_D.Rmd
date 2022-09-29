@@ -1,0 +1,98 @@
+---
+title: "Exercise D"
+output: html_notebook
+---
+```{r}
+library(fastDummies)
+```
+
+# Qualitative Data
+
+```{r}
+titanic <- data.frame(Titanic)
+titanic
+my_titanic <- titanic
+```
+
+# Categorical Variables
+
+## Tranforming categorical variable Survived
+
+First, turn "survived" into a factor. It contains "No" and "Yes" and internally is already an integer.
+```{r}
+f <- factor(titanic$Survived)
+levels(f)
+typeof(f)
+```
+
+Now, we need to transform f to an integer and write it to the column/variable "Survived"
+```{r}
+my_titanic$Survived <- as.integer(f)
+```
+
+Or everything on one line:
+```{r}
+my_titanic$Survived <- as.integer(factor(titanic$Survived))
+my_titanic
+```
+Note: "Survived" == 1 if the person did not survive. Which seems weird! Survived == 2 if the person did survive.
+
+## Tranforming the categorical variable Sex
+
+This variable is NOT ordered. So it cannot be transformed into a factor. Instead, we make a boolean for each value.
+
+"dummy_cols" selects the column "Sex", removes it, and adds for each value a new (0/1) column. So two columns here: Sex_Male and Sex_Female.
+```{r}
+my_titanic <- dummy_cols(my_titanic, select_columns = "Sex", remove_selected_columns = TRUE)
+my_titanic
+```
+
+# Ordinal Variable
+
+## Transforming the ordinal variable age
+
+Age in this database is not a number, it is qualitative ("Child" or "Adult").
+We just want to divide into children and adults, with Child = 1 and Adult = 2
+
+```{r}
+ordered(my_titanic$Age, levels = c("Child", "Adult"))
+```
+
+Convert it to integers
+```{r}
+as.integer(ordered(my_titanic$Age, levels = c("Child", "Adult")))
+```
+Now, we can replace the values in column Age
+```{r}
+my_titanic$Age <- as.integer(ordered(my_titanic$Age, levels = c("Child", "Adult")))
+my_titanic
+```
+## Tranforming the partly ordinal variable Class
+
+Class is qualitative but partially ordered (1st, 2nd, 3rd Class, BUT Crew). Therefore, we create a Boolean for Crew but ordered column for the other values.
+```{r}
+ifelse(my_titanic$Class == "Class",1,0)
+
+my_titanic$Class_Crew <- ifelse(my_titanic$Class == "Crew",1,0)
+```
+
+Now order Class:
+
+```{r}
+ordered(my_titanic$Class, levels = c("Crew", "3rd", "2nd", "1st"))
+```
+
+Converting it into integers:
+```{r}
+as.integer(ordered(my_titanic$Class, levels = c("Crew", "3rd", "2nd", "1st")))
+```
+Since this includes Crew still, we need to get the "right" Class numbers by subtracting 1
+```{r}
+as.integer(ordered(my_titanic$Class, levels = c("Crew", "3rd", "2nd", "1st")))-1
+```
+
+The resulting dataset:
+```{r}
+my_titanic
+```
+

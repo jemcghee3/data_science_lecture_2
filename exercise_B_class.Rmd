@@ -1,0 +1,106 @@
+---
+title: "Exercise B"
+output: html_notebook
+---
+# Lecture 2, Exercise B
+## No work from book
+
+First, load libraries.
+```{r}
+library(nycflights13)
+library(tidyverse)
+```
+
+Look at data.
+```{r}
+flights
+count(flights)
+```
+
+Filter the data. Here, all flights in month 1. Or combine conditions
+```{r}
+filter(flights, month == 1)
+filter(flights, month == 1, day == 1)
+```
+
+## Identifying Missing Data
+
+You can also simply remove the rows with missing values with the function “filter()”. Just negate the “is,na()” test, i.e. select all data lines which DON’T contain a missing value.
+
+```{r}
+filter(flights, ! is.na(dep_time))
+count(filter(flights, ! is.na(dep_time)))
+```
+
+## Save cleaned data
+
+Make a variable to save the data.
+```{r}
+my_flights <- filter(flights, ! is.na(dep_time))
+```
+
+## Replace missing data
+
+Here, use the scheduled departure time as the departure time, when there is no depature time.
+
+```{r}
+flights_with_replaced_dep_time <- flights
+flights_with_replaced_dep_time$dep_time <- ifelse(is.na(flights$dep_time), flights$sched_dep_time, flights$dep_time)
+```
+
+Check the work with an example
+
+```{r}
+filter(flights, tailnum == "N18120")
+filter(flights_with_replaced_dep_time, tailnum =="N18120")
+```
+
+You can also replace NA with other values. Here, 12:00 (just because)
+
+```{r}
+replacement <- 1200
+
+flights_with_replaced_dep_time <-
+  ifelse(is.na(flights$dep_time),
+         replacement,
+         flights$dep_time)
+```
+
+Or replace it with the mean.
+```{r}
+replacement <- as.integer(mean(flights$dep_time, na.rm = TRUE))
+
+replacement
+
+flights_with_replaced_dep_time <-
+  ifelse(is.na(flights$dep_time),
+         replacement,
+         flights$dep_time)
+```
+# Identifying and Eliminating Outliers
+
+Analyse departure delay
+```{r}
+ggplot(flights) +
+  geom_point(mapping = aes(x = flight, y = dep_delay))
+```
+
+There are some flights that depart earlier than scheduled. 
+```{r}
+arrange(flights, dep_delay)
+```
+We catch them.
+```{r}
+minus_delay <- filter(flights, dep_delay <= 0)
+```
+
+Analyze the distribution of the negative departure delay:
+```{r}
+boxplot(minus_delay$dep_delay)
+```
+
+Some values are out of range. We remove all lines with a lower negative departure delay than 29.
+```{r}
+my_flights <- filter(flights, dep_delay > -29)
+```
+

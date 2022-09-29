@@ -1,0 +1,106 @@
+---
+title: "Data Science Lecture 2, Exercise A"
+output: html_notebook
+---
+
+First, load ggplot2 to make pretty graphs. Corrplot used later in exercise.
+
+```{r}
+library(ggplot2)
+library(corrplot)
+```
+
+We will work with mtcars dataset, so what does it look like?
+
+```{r}
+head(mtcars)
+tail(mtcars)
+```
+
+Let's get our first insights into the dataset
+
+```{r}
+str(mtcars)
+```
+
+Compute the mean, median, and mode of column wt
+
+```{r}
+mean(mtcars$wt)
+```
+
+```{r}
+median(mtcars$wt)
+```
+
+For mode, there is no built-in mode function! Create a variable for a table, then see what the one used the most is.
+
+```{r}
+y <- table(mtcars$wt)
+y
+names(y)[which(y==max(y))]
+```
+
+summary() also works well to do all of this.
+
+```{r}
+summary(mtcars)
+```
+
+Plot the column wt
+
+```{r}
+ggplot(mtcars) +
+  geom_point(mapping = aes(x = 1:length(wt), y = wt))
+```
+
+Plot wt as function of drat
+
+```{r}
+ggplot(mtcars, aes(x = drat, y = wt)) +
+  geom_point()
+```
+
+Boxplot wt
+
+```{r}
+boxplot(mtcars$wt)
+```
+
+Histogram and read ?hist for help
+
+```{r}
+hist(mtcars$wt)
+```
+
+```{r}
+?hist
+```
+
+Q-Q Plot of wt The Q-Q plot, or quantile-quantile plot, is a graphical tool to help us assess if a set of data plausibly came from some theoretical distribution such as a Normal or exponential. If both sets of quantiles came from the same distribution, we should see the points forming a line that's roughly straight.
+
+In R, there are two functions to create Q-Q plots: qqnorm and qqplot. qqnorm creates a Normal Q-Q plot. You give it a vector of data and R plots the data in sorted order versus quantiles from a standard Normal distribution. The qqplot function allows you to create a Q-Q plot for any distribution. Unlike the qqnorm function, you have to provide two arguments: the first set of data and the second set of data.
+
+```{r}
+qqnorm(mtcars$wt)
+```
+
+We can draw a line on our Q-Q Plot to help see. First build the plot, then draw the line.
+
+```{r}
+qqnorm(mtcars$wt)
+qqline(mtcars$wt)
+```
+
+What correlation do columns have? Rounded to two decimals
+
+```{r}
+round(cor(mtcars),2)
+```
+
+Use corrplot to check the correlation (must be installed first).
+
+```{r}
+
+corrplot(cor(mtcars), type = "upper", order = "hclust", tl.col = "black", tl.srt = 45)
+```

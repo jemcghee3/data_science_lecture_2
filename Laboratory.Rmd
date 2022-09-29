@@ -1,0 +1,135 @@
+---
+title: "Data Science Lecture 2 Lab"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(corrplot)
+library(fastDummies)
+library(tidyr)
+```
+
+We have a table of cars of various types. The dataset is dirty and needs to be prepared for linear regression.
+```{r}
+my_cgh_cars <- cgh_cars
+head(my_cgh_cars)
+```
+```
+
+First, let's plot it and see what we get.
+```{r}
+ggplot(data = my_cgh_cars) +
+  geom_boxplot(mapping = aes(x = type, y = price))
+```
+
+So coup has a huge outlier. Ship is kinda weird thing to be a car. Station has an outlier. Convertible has maybe one datapoint?
+
+```{r}
+summary(my_cgh_cars)
+```
+
+We know mpg can't be 0, cyl can't be negative, wt can't be 2140 tons (or whatever), and 2.8 gears? I don't know what carb means but there is probably an error there.
+```{r}
+ggplot(data = my_cgh_cars) +
+  geom_histogram(mapping = aes(x = mpg))
+```
+
+Four rows have non-finite values, plus there are 0s.
+```{r}
+filter(my_cgh_cars, is.na(mpg))
+filter(my_cgh_cars, mpg == 0)
+```
+
+let's set those with 0 mpg as NA
+```{r}
+my_cgh_cars$mpg <- ifelse(my_cgh_cars$mpg == 0, NA, my_cgh_cars$mpg)
+filter(my_cgh_cars, mpg == 0)
+filter(my_cgh_cars, is.na(mpg))
+```
+
+There is a car where wt is off. We could either remove the outlier, or make it more in line by dividing by 1000. Let's do the second:
+```{r}
+my_cgh_cars$wt <- ifelse(my_cgh_cars$wt >= 1000, my_cgh_cars$wt / 1000, my_cgh_cars$wt)
+my_cgh_cars
+```
+There are still more outliers, so let's do the same for them:
+
+```{r}
+my_cgh_cars$wt <- ifelse(my_cgh_cars$wt >= 100, my_cgh_cars$wt / 100, my_cgh_cars$wt)
+my_cgh_cars$wt <- ifelse(my_cgh_cars$wt >= 10, my_cgh_cars$wt / 10, my_cgh_cars$wt)
+summary(my_cgh_cars)
+
+```
+
+We have cars with negative cyl. We can make that positive or we can set them as NA. Let's make them positive.
+```{r}
+my_cgh_cars$cyl <- ifelse(my_cgh_cars$cyl < 0, my_cgh_cars$cyl * -1, my_cgh_cars$cyl)
+summary(my_cgh_cars)
+```
+
+How is that?
+
+```{r}
+ggplot(data = my_cgh_cars) +
+  geom_boxplot(mapping = aes(x = type, y = price))
+```
+
+Let's do something about this ship. It is probably a limousine? But we don't really have a way of knowing it is not a convertible or a coupe from the information we have.
+```{r}
+filter(my_cgh_cars, type == "ship")
+my_cgh_cars$type <- ifelse(my_cgh_cars$type == "ship", NA, my_cgh_cars$type)
+filter(my_cgh_cars, type == "ship")
+ggplot(data = my_cgh_cars) +
+  geom_boxplot(mapping = aes(x = type, y = price))
+```
+
+```{r}
+summary(my_cgh_cars)
+```
+
+Let's mutate the style to ordered numbers
+```{r}
+ggplot(data = my_cgh_cars) +
+  geom_boxplot(mapping = aes(x = style))
+```
+```{r}
+f <- factor(my_cgh_cars$style)
+levels(f)
+typeof(f)
+```
+
+It is an integer, so we can convert it. But if we did that, it would be basic, then luxus, then medium!
+
+```{r}
+ordered(my_cgh_cars$style, levels = c("basic", "medium", "luxus"))
+```
+
+```{r}
+as.integer(ordered(my_cgh_cars$style, levels = c("basic", "medium", "luxus")))
+```
+That is what we want, 1-3 as numbers.
+```{r}
+my_cgh_cars$style <- as.integer(ordered(my_cgh_cars$style, levels = c("basic", "medium", "luxus")))
+my_cgh_cars
+```
+
+I want to convert the categorical variables of brand, type, and style to binary values, using dummy_cols
+```{r}
+my_cgh_cars <- dummy_cols(my_cgh_cars, select_columns = c("brand", "type", "style"), remove_selected = TRUE)
+my_cgh_cars
+```
+
+let's find the missing mpg
+```{r}
+filter(my_cgh_cars, is.na(mpg))
+```
+
+five 4-cyl and one 8-cyl
+lm(mpg ~ c("disp", "wt", "gear", "carb"), data = my_cgh_cars)
+```{r}
+ggplot(data = my_cgh_cars, aes(wt, price, color = "type")) +
+  geom_point()
+```
+
+
