@@ -6,10 +6,16 @@ output: html_notebook
 First, I read Chapter 5 of R for Data Science.
 
 ```{r}
+install.packages("ggbeeswarm")
+install.packages("seriation")
+install.packages("d3heatmap")
+install.packages("heatmaply")
+
 library(tidyverse)
 library(dplyr)
 library(corrplot)
 library(ggstance)
+library(tibble)
 ```
 
 Exploratory Data Analysis (**"EDA"**) is fundamentally a creative process. And like most creative processes, the key to asking *quality* questions is to generate a large *quantity* of questions.
@@ -360,3 +366,110 @@ ggplot(data = diamonds, mapping = aes(cut, price)) +
 
 Premium diamonds tend to have higher prices than ideal, probably because they are bigger. The worse-cut diamonds do not have very many values in the higher price ranges.
 
+5.  Compare and contrast geom_violin() with a faceted geom_histogram(), or a colored geom_freqpoly(). What are the pros
+and cons of each method?
+
+```{r}
+ggplot(data = diamonds) +
+  geom_violin(mapping = aes(cut, price))
+
+ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(y = price)) +
+  facet_wrap(~ cut, nrow = 3)
+
+ggplot(data = diamonds) + 
+  geom_freqpoly(mapping = aes(x = price, color = cut))
+```
+
+geom_violin() is useful to compare the shape of the distriution among variables. However, it does not show anything about the number of observations.
+
+facet_wrap() is useful because it shows the number of observations for each combination of variables, which a violin distribution does not show. However, it is harder to compare the distribution of in comparison with geom_violin() because the raw number of observations skews the graphs.
+
+geom_freqpoly() is useful to compare trends for a diferent variable. However, it is difficult to compare for all values because the lines are all on top of each other.
+
+6.  If you have a small dataset, it's sometimes useful to use geom_jitter() to see the relationship between a continuous and categorical variable. The *ggbeeswarm* package provides a number of methods similar to geom_jitter().List them and briefly describe what each one does.
+
+```{r}
+library(ggbeeswarm)
+```
+
+## Two Categorical Variables
+
+Need to count the number of observations of each combination. 
+
+That is:
+a = 0 or 1
+b = 0 or 1
+How many (0, 0), (0, 1), (1, 0), and (1, 1)?
+
+geom_count() does that.
+
+
+```{r}
+ggplot(data = diamonds) +
+  geom_count(mapping = aes(x = cut, y = color))
+```
+
+We can also use the dplyr to compute the count.
+
+This gives us a table.
+
+```{r}
+diamonds %>%
+  count(color, cut)
+```
+
+We can visualize with geom_tile(), which gives us a volored tile heatmap of the counts where the values intersect.
+
+```{r}
+diamonds %>%
+  count(color, cut) %>%
+  ggplot(mapping = aes(x = color, y = cut)) +
+  geom_tile(mapping = aes(fill = n))
+```
+
+If the categorical variable is unordered, may want to use the seriation package to simultaneously reoder the rows and columns in order to more clearly reveal interesting data paterns. For larger plots, you miht want to try the d3heatmap or heatmaply packages, which create interactive plots.
+
+1.  How could you rescale the count dataset to more clearly show the distribution of cut within color, or color within cut?
+
+By using a jitterplot or a dodged bar chart.
+
+```{r}
+
+ggplot(data = diamonds, mapping = aes(x = cut, y = color)) +
+  geom_jitter(alpha = 0.05)
+
+ggplot(data = diamonds, mapping = aes(x = cut, fill = color)) +
+  geom_bar(position = "dodge")
+```
+2.   Use geom_tile() together with dplyr to explore how average flight delays vary by destination and month of year. What makes the plot difficult to read? How could you improve it?
+
+
+The plot is difficult to read because there are so many destinations. We could improve it by using a map or by making different tile plots for each destination. I need to pivot the data to make it more useful, I think
+```{r}
+library(nycflights13)
+head(flights)
+my_flights <- flights
+my_flights <- my_flights %>%
+  filter(!is.na(my_flights$dep_delay))
+ggplot(data = my_flights, mapping = aes(x = month, y = dest)) +
+  geom_tile(mapping = aes(fill = dep_delay))
+
+
+```
+
+3.  Why is it slightly better to use aes(x = color, y = cut) rather than aes(x = cut, y = color) in the previous example?
+
+Because it breaks up the x-axis into more parts to make it easier to read?
+```{r}
+diamonds %>%
+ count(color, cut) %>%
+ ggplot(mapping = aes(x = color, y = cut)) +
+ geom_tile(mapping = aes(fill = n))
+
+diamonds %>%
+ count(cut, color) %>%
+ ggplot(mapping = aes(x = cut, y = color)) +
+ geom_tile(mapping = aes(fill = n))
+```
+# Two Continuous Variables
