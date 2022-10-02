@@ -8,7 +8,7 @@ First, I read Chapter 5 of R for Data Science.
 ```{r}
 install.packages("ggbeeswarm")
 install.packages("seriation")
-install.packages("d3heatmap")
+#install.packages("d3heatmap")
 install.packages("heatmaply")
 
 library(tidyverse)
