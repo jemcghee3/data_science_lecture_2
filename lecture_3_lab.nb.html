@@ -2184,8 +2184,8 @@ Residual standard error: 3.95 on 388 degrees of freedom
 Multiple R-squared:  0.7459,    Adjusted R-squared:  0.7439 
 F-statistic: 379.6 on 3 and 388 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0OSA8LSBsbShtcGd+bG9nKGhvcnNlcG93ZXIpICsgbG9nKHdlaWdodCkpICMgYmVzdCBtb2RlbFxuc3VtbWFyeShsbS5maXQ5KVxuYGBgIn0= -->
-<pre class="r"><code>lm.fit9 &lt;- lm(mpg~log(horsepower) + log(weight)) # best model
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0OSA8LSBsbShtcGd+bG9nKGhvcnNlcG93ZXIpICsgbG9nKHdlaWdodCkpXG5zdW1tYXJ5KGxtLmZpdDkpXG5gYGAifQ== -->
+<pre class="r"><code>lm.fit9 &lt;- lm(mpg~log(horsepower) + log(weight))
 summary(lm.fit9)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IGxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpKVxuXG5SZXNpZHVhbHM6XG4gICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCBcbi0xMC42NjY1ICAtMi40MDI4ICAtMC4zODQyICAgMi4xNTU4ICAxNS4zMzU5IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlIFByKD58dHwpICAgIFxuKEludGVyY2VwdCkgICAgICAxNzkuOTczICAgICAgNy40MjAgICAyNC4yNSAgPCAyZS0xNiAqKipcbmxvZyhob3JzZXBvd2VyKSAgIC03LjY3MiAgICAgIDEuMjEwICAgLTYuMzQgNi4zNmUtMTAgKioqXG5sb2cod2VpZ2h0KSAgICAgIC0xNS4yNDQgICAgICAxLjQ3OCAgLTEwLjMyICA8IDJlLTE2ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAzLjk5MyBvbiAzODkgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjczOTYsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjczODIgXG5GLXN0YXRpc3RpYzogNTUyLjQgb24gMiBhbmQgMzg5IERGLCAgcC12YWx1ZTogPCAyLjJlLTE2XG4ifQ== -->
@@ -2235,8 +2235,8 @@ Residual standard error: 3.951 on 388 degrees of freedom
 Multiple R-squared:  0.7457,    Adjusted R-squared:  0.7438 
 F-statistic: 379.3 on 3 and 388 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTEgPC0gbG0obXBnfmxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpICsgeWVhcikgIyBiZXN0IG1vZGVsXG5zdW1tYXJ5KGxtLmZpdDExKVxuYGBgIn0= -->
-<pre class="r"><code>lm.fit11 &lt;- lm(mpg~log(horsepower) + log(weight) + year) # best model
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTEgPC0gbG0obXBnfmxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpICsgeWVhcilcbnN1bW1hcnkobG0uZml0MTEpXG5gYGAifQ== -->
+<pre class="r"><code>lm.fit11 &lt;- lm(mpg~log(horsepower) + log(weight) + year)
 summary(lm.fit11)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IGxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpICsgeWVhcilcblxuUmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTguNzYyMyAtMS45NTcyIC0wLjA3MzEgIDEuNzc1NiAxMy42NDMwIFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAxMjAuNzk1NDAgICAgNi45MzUyMiAgMTcuNDE4ICAgPDJlLTE2ICoqKlxubG9nKGhvcnNlcG93ZXIpICAtMi43NjAyMCAgICAwLjk5ODk0ICAtMi43NjMgICAgMC4wMDYgKiogXG5sb2cod2VpZ2h0KSAgICAgLTE3LjcwMzI5ICAgIDEuMTY4NzUgLTE1LjE0NyAgIDwyZS0xNiAqKipcbnllYXIgICAgICAgICAgICAgIDAuNzM5OTEgICAgMC4wNDcyNCAgMTUuNjYyICAgPDJlLTE2ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAzLjEzIG9uIDM4OCBkZWdyZWVzIG9mIGZyZWVkb21cbk11bHRpcGxlIFItc3F1YXJlZDogIDAuODQwNCxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODM5MiBcbkYtc3RhdGlzdGljOiA2ODEuMiBvbiAzIGFuZCAzODggREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
@@ -2261,11 +2261,357 @@ Residual standard error: 3.13 on 388 degrees of freedom
 Multiple R-squared:  0.8404,    Adjusted R-squared:  0.8392 
 F-statistic: 681.2 on 3 and 388 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTIgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIGxvZyh3ZWlnaHQpICsgeWVhcilcbnN1bW1hcnkobG0uZml0MTIpXG5gYGAifQ== -->
+<pre class="r"><code>lm.fit12 &lt;- lm(mpg~poly(horsepower,2) + log(weight) + year)
+summary(lm.fit12)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBsb2cod2VpZ2h0KSArIHllYXIpXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi04LjAyODMgLTEuOTE1OSAgMC4wMDQ4ICAxLjYxMzggMTIuODkxMCBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICA5Ny41MjQ2NSAgICA5LjQwNjkwICAxMC4zNjcgIDwgMmUtMTYgKioqXG5wb2x5KGhvcnNlcG93ZXIsIDIpMSAtMTguMDExNzAgICAgNi40OTIyOSAgLTIuNzc0ICAgMC4wMDU4ICoqIFxucG9seShob3JzZXBvd2VyLCAyKTIgIDIzLjE5MDgzICAgIDMuMzk5MTkgICA2LjgyMiAzLjQ2ZS0xMSAqKipcbmxvZyh3ZWlnaHQpICAgICAgICAgIC0xNi43MTUwNCAgICAxLjE1NDA1IC0xNC40ODQgIDwgMmUtMTYgKioqXG55ZWFyICAgICAgICAgICAgICAgICAgIDAuNzc1OTkgICAgMC4wNDU1NiAgMTcuMDMzICA8IDJlLTE2ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAyLjk5IG9uIDM4NyBkZWdyZWVzIG9mIGZyZWVkb21cbk11bHRpcGxlIFItc3F1YXJlZDogIDAuODU0OCxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODUzMyBcbkYtc3RhdGlzdGljOiA1NjkuNCBvbiA0IGFuZCAzODcgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + log(weight) + year)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.0283 -1.9159  0.0048  1.6138 12.8910 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           97.52465    9.40690  10.367  &lt; 2e-16 ***
+poly(horsepower, 2)1 -18.01170    6.49229  -2.774   0.0058 ** 
+poly(horsepower, 2)2  23.19083    3.39919   6.822 3.46e-11 ***
+log(weight)          -16.71504    1.15405 -14.484  &lt; 2e-16 ***
+year                   0.77599    0.04556  17.033  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.99 on 387 degrees of freedom
+Multiple R-squared:  0.8548,    Adjusted R-squared:  0.8533 
+F-statistic: 569.4 on 4 and 387 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTMgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIGxvZyh3ZWlnaHQpICsgeWVhciArIG9yaWdpbikgIyBnb29kIG1vZGVsXG5zdW1tYXJ5KGxtLmZpdDEzKVxuYGBgIn0= -->
+<pre class="r"><code>lm.fit13 &lt;- lm(mpg~poly(horsepower,2) + log(weight) + year + origin) # good model
+summary(lm.fit13)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBcbiAgICBvcmlnaW4pXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi04LjY5NzMgLTEuODExNyAtMC4wNzY4ICAxLjQ5NzIgMTIuMTgwMSBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICA4Mi4xNjg1NiAgIDEwLjMzMjkyICAgNy45NTIgMi4wNWUtMTQgKioqXG5wb2x5KGhvcnNlcG93ZXIsIDIpMSAtMjEuMjQzMTkgICAgNi40NzcyNCAgLTMuMjgwICAwLjAwMTEzICoqIFxucG9seShob3JzZXBvd2VyLCAyKTIgIDIzLjM5MDI1ICAgIDMuMzU0NzUgICA2Ljk3MiAxLjM2ZS0xMSAqKipcbmxvZyh3ZWlnaHQpICAgICAgICAgIC0xNC44NTUxMiAgICAxLjI2NDU2IC0xMS43NDcgIDwgMmUtMTYgKioqXG55ZWFyICAgICAgICAgICAgICAgICAgIDAuNzY2NjcgICAgMC4wNDUwNCAgMTcuMDIyICA8IDJlLTE2ICoqKlxub3JpZ2luICAgICAgICAgICAgICAgICAwLjc5OTQ2ICAgIDAuMjM2MzIgICAzLjM4MyAgMC4wMDA3OSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMi45NSBvbiAzODYgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjg1OSxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODU3MSBcbkYtc3RhdGlzdGljOiA0NzAuMSBvbiA1IGFuZCAzODYgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + log(weight) + year + 
+    origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6973 -1.8117 -0.0768  1.4972 12.1801 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           82.16856   10.33292   7.952 2.05e-14 ***
+poly(horsepower, 2)1 -21.24319    6.47724  -3.280  0.00113 ** 
+poly(horsepower, 2)2  23.39025    3.35475   6.972 1.36e-11 ***
+log(weight)          -14.85512    1.26456 -11.747  &lt; 2e-16 ***
+year                   0.76667    0.04504  17.022  &lt; 2e-16 ***
+origin                 0.79946    0.23632   3.383  0.00079 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.95 on 386 degrees of freedom
+Multiple R-squared:  0.859, Adjusted R-squared:  0.8571 
+F-statistic: 470.1 on 5 and 386 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTQgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBmYXZvcml0ZSBtb2RlbFxuc3VtbWFyeShsbS5maXQxNClcbmBgYCJ9 -->
+<pre class="r"><code>lm.fit14 &lt;- lm(mpg~poly(horsepower,2) + poly(weight,2) + year + origin) # favorite model
+summary(lm.fit14)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgXG4gICAgb3JpZ2luKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tOC44ODQxIC0xLjcyOTIgLTAuMTIxMSAgMS41ODYwIDEyLjEzNjAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAtMzYuODA3ODkgICAgMy4zOTI0MSAtMTAuODUwICA8IDJlLTE2ICoqKlxucG9seShob3JzZXBvd2VyLCAyKTEgLTI0LjIyMjEzICAgIDYuNDUyNzcgIC0zLjc1NCAwLjAwMDIwMSAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikyICAxOC4yMzE2NiAgICAzLjczNDgzICAgNC44ODIgMS41NWUtMDYgKioqXG5wb2x5KHdlaWdodCwgMikxICAgICAtODAuMzc2OTQgICAgNi44ODg0NyAtMTEuNjY4ICA8IDJlLTE2ICoqKlxucG9seSh3ZWlnaHQsIDIpMiAgICAgIDIxLjM5OTg1ICAgIDMuNjg0MTUgICA1LjgwOSAxLjMyZS0wOCAqKipcbnllYXIgICAgICAgICAgICAgICAgICAgMC43NzkxNSAgICAwLjA0NDcxICAxNy40MjYgIDwgMmUtMTYgKioqXG5vcmlnaW4gICAgICAgICAgICAgICAgIDAuNjY4NTMgICAgMC4yMzcyMSAgIDIuODE4IDAuMDA1MDc3ICoqIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAyLjkxNSBvbiAzODUgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjg2MjYsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjg2MDUgXG5GLXN0YXRpc3RpYzogICA0MDMgb24gNiBhbmQgMzg1IERGLCAgcC12YWx1ZTogPCAyLjJlLTE2XG4ifQ== -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + poly(weight, 2) + year + 
+    origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.8841 -1.7292 -0.1211  1.5860 12.1360 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          -36.80789    3.39241 -10.850  &lt; 2e-16 ***
+poly(horsepower, 2)1 -24.22213    6.45277  -3.754 0.000201 ***
+poly(horsepower, 2)2  18.23166    3.73483   4.882 1.55e-06 ***
+poly(weight, 2)1     -80.37694    6.88847 -11.668  &lt; 2e-16 ***
+poly(weight, 2)2      21.39985    3.68415   5.809 1.32e-08 ***
+year                   0.77915    0.04471  17.426  &lt; 2e-16 ***
+origin                 0.66853    0.23721   2.818 0.005077 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.915 on 385 degrees of freedom
+Multiple R-squared:  0.8626,    Adjusted R-squared:  0.8605 
+F-statistic:   403 on 6 and 385 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTRiIDwtIGxtKG1wZ35sb2coaG9yc2Vwb3dlcikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBvcmlnaW4pICMgc2Vjb25kIGZhdm9yaXRlIG1vZGVsXG5zdW1tYXJ5KGxtLmZpdDE0YilcbmBgYCJ9 -->
+<pre class="r"><code>lm.fit14b &lt;- lm(mpg~log(horsepower) + log(weight) + year + origin) # second favorite model
+summary(lm.fit14b)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IGxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpICsgeWVhciArIG9yaWdpbilcblxuUmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTkuNDY0OCAtMS44MzE4IC0wLjAwMjcgIDEuNjUxMyAxMi44NTc3IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAxMDYuNTI3MTYgICAgNy45NjYzNyAgMTMuMzcyICA8IDJlLTE2ICoqKlxubG9nKGhvcnNlcG93ZXIpICAtMy4yMzY4MCAgICAwLjk5NDI3ICAtMy4yNTUgMC4wMDEyMzIgKiogXG5sb2cod2VpZ2h0KSAgICAgLTE1LjcyNTU5ICAgIDEuMjg0MDYgLTEyLjI0NyAgPCAyZS0xNiAqKipcbnllYXIgICAgICAgICAgICAgIDAuNzMxNDUgICAgMC4wNDY2NCAgMTUuNjgzICA8IDJlLTE2ICoqKlxub3JpZ2luICAgICAgICAgICAgMC44NjA0OSAgICAwLjI0NjU1ICAgMy40OTAgMC4wMDA1MzggKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDMuMDg2IG9uIDM4NyBkZWdyZWVzIG9mIGZyZWVkb21cbk11bHRpcGxlIFItc3F1YXJlZDogIDAuODQ1MyxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODQzNyBcbkYtc3RhdGlzdGljOiA1MjguNyBvbiA0IGFuZCAzODcgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ log(horsepower) + log(weight) + year + origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.4648 -1.8318 -0.0027  1.6513 12.8577 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     106.52716    7.96637  13.372  &lt; 2e-16 ***
+log(horsepower)  -3.23680    0.99427  -3.255 0.001232 ** 
+log(weight)     -15.72559    1.28406 -12.247  &lt; 2e-16 ***
+year              0.73145    0.04664  15.683  &lt; 2e-16 ***
+origin            0.86049    0.24655   3.490 0.000538 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.086 on 387 degrees of freedom
+Multiple R-squared:  0.8453,    Adjusted R-squared:  0.8437 
+F-statistic: 528.7 on 4 and 387 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTRjIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBvcmlnaW4pXG5zdW1tYXJ5KGxtLmZpdDE0YylcbmBgYCJ9 -->
+<pre class="r"><code>lm.fit14c &lt;- lm(mpg~poly(horsepower,2) + log(weight) + year + origin)
+summary(lm.fit14c)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBcbiAgICBvcmlnaW4pXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi04LjY5NzMgLTEuODExNyAtMC4wNzY4ICAxLjQ5NzIgMTIuMTgwMSBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICA4Mi4xNjg1NiAgIDEwLjMzMjkyICAgNy45NTIgMi4wNWUtMTQgKioqXG5wb2x5KGhvcnNlcG93ZXIsIDIpMSAtMjEuMjQzMTkgICAgNi40NzcyNCAgLTMuMjgwICAwLjAwMTEzICoqIFxucG9seShob3JzZXBvd2VyLCAyKTIgIDIzLjM5MDI1ICAgIDMuMzU0NzUgICA2Ljk3MiAxLjM2ZS0xMSAqKipcbmxvZyh3ZWlnaHQpICAgICAgICAgIC0xNC44NTUxMiAgICAxLjI2NDU2IC0xMS43NDcgIDwgMmUtMTYgKioqXG55ZWFyICAgICAgICAgICAgICAgICAgIDAuNzY2NjcgICAgMC4wNDUwNCAgMTcuMDIyICA8IDJlLTE2ICoqKlxub3JpZ2luICAgICAgICAgICAgICAgICAwLjc5OTQ2ICAgIDAuMjM2MzIgICAzLjM4MyAgMC4wMDA3OSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMi45NSBvbiAzODYgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjg1OSxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODU3MSBcbkYtc3RhdGlzdGljOiA0NzAuMSBvbiA1IGFuZCAzODYgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + log(weight) + year + 
+    origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6973 -1.8117 -0.0768  1.4972 12.1801 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           82.16856   10.33292   7.952 2.05e-14 ***
+poly(horsepower, 2)1 -21.24319    6.47724  -3.280  0.00113 ** 
+poly(horsepower, 2)2  23.39025    3.35475   6.972 1.36e-11 ***
+log(weight)          -14.85512    1.26456 -11.747  &lt; 2e-16 ***
+year                   0.76667    0.04504  17.022  &lt; 2e-16 ***
+origin                 0.79946    0.23632   3.383  0.00079 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.95 on 386 degrees of freedom
+Multiple R-squared:  0.859, Adjusted R-squared:  0.8571 
+F-statistic: 470.1 on 5 and 386 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTUgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSAqIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBnb29kIG1vZGVsXG5zdW1tYXJ5KGxtLmZpdDE1KVxuYGBgIn0= -->
+<pre class="r"><code>lm.fit15 &lt;- lm(mpg~poly(horsepower,2) * poly(weight,2) + year + origin) # good model
+summary(lm.fit15)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKiBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgXG4gICAgb3JpZ2luKVxuXG5SZXNpZHVhbHM6XG4gICBNaW4gICAgIDFRIE1lZGlhbiAgICAgM1EgICAgTWF4IFxuLTguODE2IC0xLjcxNiAtMC4wNzggIDEuNDY4IDExLjc1MiBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0zNy4zNzI5NyAgICAzLjM4MTU1IC0xMS4wNTIgIDwgMmUtMTYgKioqXG5wb2x5KGhvcnNlcG93ZXIsIDIpMSAgICAgICAgICAgICAgICAgICAtMzQuMjE3ODMgICAxNC4wMzQ1NiAgLTIuNDM4ICAwLjAxNTIyICogIFxucG9seShob3JzZXBvd2VyLCAyKTIgICAgICAgICAgICAgICAgICAgIDExLjg0ODgwICAgIDcuNzA3NTggICAxLjUzNyAgMC4xMjUwNSAgICBcbnBvbHkod2VpZ2h0LCAyKTEgICAgICAgICAgICAgICAgICAgICAgIC04Ny44MjgxNSAgIDExLjk4ODQ5ICAtNy4zMjYgMS40M2UtMTIgKioqXG5wb2x5KHdlaWdodCwgMikyICAgICAgICAgICAgICAgICAgICAgICAgIDQuMDAxMjYgICAgOS41NDMzNCAgIDAuNDE5ICAwLjY3NTI1ICAgIFxueWVhciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwLjc3MjMwICAgIDAuMDQ0NTcgIDE3LjMyOSAgPCAyZS0xNiAqKipcbm9yaWdpbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC43MzMwMyAgICAwLjIzNjYxICAgMy4wOTggIDAuMDAyMDkgKiogXG5wb2x5KGhvcnNlcG93ZXIsIDIpMTpwb2x5KHdlaWdodCwgMikxICA1NTkuNzMwNTMgIDI4MC4zOTIwMiAgIDEuOTk2ICAwLjA0NjYyICogIFxucG9seShob3JzZXBvd2VyLCAyKTI6cG9seSh3ZWlnaHQsIDIpMSAgLTIxLjE2MzE2ICAxNDAuMzc0MjAgIC0wLjE1MSAgMC44ODAyNCAgICBcbnBvbHkoaG9yc2Vwb3dlciwgMikxOnBvbHkod2VpZ2h0LCAyKTIgICAyNS41NTM0MiAgMTI3LjkwMjUxICAgMC4yMDAgIDAuODQxNzUgICAgXG5wb2x5KGhvcnNlcG93ZXIsIDIpMjpwb2x5KHdlaWdodCwgMikyIC0xODkuNDM1MDUgICA2OC42NDE5NCAgLTIuNzYwICAwLjAwNjA2ICoqIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAyLjg5MiBvbiAzODEgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjg2NjIsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjg2MjcgXG5GLXN0YXRpc3RpYzogMjQ2LjYgb24gMTAgYW5kIDM4MSBERiwgIHAtdmFsdWU6IDwgMi4yZS0xNlxuIn0= -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) * poly(weight, 2) + year + 
+    origin)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-8.816 -1.716 -0.078  1.468 11.752 
+
+Coefficients:
+                                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                            -37.37297    3.38155 -11.052  &lt; 2e-16 ***
+poly(horsepower, 2)1                   -34.21783   14.03456  -2.438  0.01522 *  
+poly(horsepower, 2)2                    11.84880    7.70758   1.537  0.12505    
+poly(weight, 2)1                       -87.82815   11.98849  -7.326 1.43e-12 ***
+poly(weight, 2)2                         4.00126    9.54334   0.419  0.67525    
+year                                     0.77230    0.04457  17.329  &lt; 2e-16 ***
+origin                                   0.73303    0.23661   3.098  0.00209 ** 
+poly(horsepower, 2)1:poly(weight, 2)1  559.73053  280.39202   1.996  0.04662 *  
+poly(horsepower, 2)2:poly(weight, 2)1  -21.16316  140.37420  -0.151  0.88024    
+poly(horsepower, 2)1:poly(weight, 2)2   25.55342  127.90251   0.200  0.84175    
+poly(horsepower, 2)2:poly(weight, 2)2 -189.43505   68.64194  -2.760  0.00606 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.892 on 381 degrees of freedom
+Multiple R-squared:  0.8662,    Adjusted R-squared:  0.8627 
+F-statistic: 246.6 on 10 and 381 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTYgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSAqIGRpc3BsYWNlbWVudCArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBnb29kIG1vZGVsXG5zdW1tYXJ5KGxtLmZpdDE2KVxuYGBgIn0= -->
+<pre class="r"><code>lm.fit16 &lt;- lm(mpg~poly(horsepower,2) * displacement + poly(weight,2) + year + origin) # good model
+summary(lm.fit16)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKiBkaXNwbGFjZW1lbnQgKyBwb2x5KHdlaWdodCwgXG4gICAgMikgKyB5ZWFyICsgb3JpZ2luKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tOC42OTYyIC0xLjU5ODcgLTAuMTIyMiAgMS40NDUzIDEyLjIyMTQgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgICAgICAtMzUuOTk1NTAyICAgMy42OTQxNTUgIC05Ljc0NCAgPCAyZS0xNiAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikxICAgICAgICAgICAgICAtODIuMTU1MTA3ICAyNi42NTExNzIgIC0zLjA4MyAgMC4wMDIyMCAqKiBcbnBvbHkoaG9yc2Vwb3dlciwgMikyICAgICAgICAgICAgICAgMTkuNTg1MzM4ICAxMS43MTUxMDUgICAxLjY3MiAgMC4wOTUzOCAuICBcbmRpc3BsYWNlbWVudCAgICAgICAgICAgICAgICAgICAgICAgLTAuMDA1NTA0ICAgMC4wMDU3NjQgIC0wLjk1NSAgMC4zNDAyNiAgICBcbnBvbHkod2VpZ2h0LCAyKTEgICAgICAgICAgICAgICAgICAtNzYuNzI3ODY2ICAgOS41MjcyODkgIC04LjA1MyAxLjAzZS0xNCAqKipcbnBvbHkod2VpZ2h0LCAyKTIgICAgICAgICAgICAgICAgICAgMTAuODg1Nzc0ICAgNC45MDU5NjYgICAyLjIxOSAgMC4wMjcwOCAqICBcbnllYXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuNzY3NDAxICAgMC4wNDQ3MTEgIDE3LjE2MyAgPCAyZS0xNiAqKipcbm9yaWdpbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuNjMyNjg2ICAgMC4yNTE3MTcgICAyLjUxMyAgMC4wMTIzNyAqICBcbnBvbHkoaG9yc2Vwb3dlciwgMikxOmRpc3BsYWNlbWVudCAgIDAuMjQ5NTE4ICAgMC4wOTQyMDYgICAyLjY0OSAgMC4wMDg0MiAqKiBcbnBvbHkoaG9yc2Vwb3dlciwgMikyOmRpc3BsYWNlbWVudCAgLTAuMDY3MjQzICAgMC4wMzA5NzcgIC0yLjE3MSAgMC4wMzA1NiAqICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMi44ODQgb24gMzgyIGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC44NjY2LFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC44NjM1IFxuRi1zdGF0aXN0aWM6IDI3NS44IG9uIDkgYW5kIDM4MiBERiwgIHAtdmFsdWU6IDwgMi4yZS0xNlxuIn0= -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) * displacement + poly(weight, 
+    2) + year + origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6962 -1.5987 -0.1222  1.4453 12.2214 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                       -35.995502   3.694155  -9.744  &lt; 2e-16 ***
+poly(horsepower, 2)1              -82.155107  26.651172  -3.083  0.00220 ** 
+poly(horsepower, 2)2               19.585338  11.715105   1.672  0.09538 .  
+displacement                       -0.005504   0.005764  -0.955  0.34026    
+poly(weight, 2)1                  -76.727866   9.527289  -8.053 1.03e-14 ***
+poly(weight, 2)2                   10.885774   4.905966   2.219  0.02708 *  
+year                                0.767401   0.044711  17.163  &lt; 2e-16 ***
+origin                              0.632686   0.251717   2.513  0.01237 *  
+poly(horsepower, 2)1:displacement   0.249518   0.094206   2.649  0.00842 ** 
+poly(horsepower, 2)2:displacement  -0.067243   0.030977  -2.171  0.03056 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.884 on 382 degrees of freedom
+Multiple R-squared:  0.8666,    Adjusted R-squared:  0.8635 
+F-statistic: 275.8 on 9 and 382 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsbS5maXQxNyA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyLDIpICsgcG9seSh3ZWlnaHQsMikgKyB5ZWFyICsgb3JpZ2luICsgY3lsaW5kZXJzKSAjIGFkZGluZyBjeWxpbmRlcnMgdG8gbW9kZWwgMTQgZG9lcyBub3RoaW5nXG4jIHN1bW1hcnkobG0uZml0MTcpXG5cbmxtLmZpdDE2IDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKiBjeWxpbmRlcnMgKyBkaXNwbGFjZW1lbnQgKyBwb2x5KHdlaWdodCwyKSArIHllYXIgKyBvcmlnaW4pICMgb2sgbW9kZWxcbnN1bW1hcnkobG0uZml0MTYpXG5gYGAifQ== -->
+<pre class="r"><code># lm.fit17 &lt;- lm(mpg~poly(horsepower,2) + poly(weight,2) + year + origin + cylinders) # adding cylinders to model 14 does nothing
+# summary(lm.fit17)
+
+lm.fit16 &lt;- lm(mpg~poly(horsepower,2) * cylinders + displacement + poly(weight,2) + year + origin) # ok model
+summary(lm.fit16)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKiBjeWxpbmRlcnMgKyBkaXNwbGFjZW1lbnQgKyBcbiAgICBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgb3JpZ2luKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tOC44NjY4IC0xLjU5MTUgLTAuMTM3OSAgMS40NTU2IDExLjg1OTAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgICAtMy42OThlKzAxICA0LjI4MWUrMDAgIC04LjYzOCAgPCAyZS0xNiAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikxICAgICAgICAgICAtMS4wMjhlKzAyICA2Ljk0MmUrMDEgIC0xLjQ4MSAwLjEzOTMzNCAgICBcbnBvbHkoaG9yc2Vwb3dlciwgMikyICAgICAgICAgICAgMi4wODdlKzAxICAzLjcxMmUrMDEgICAwLjU2MiAwLjU3NDI3MiAgICBcbmN5bGluZGVycyAgICAgICAgICAgICAgICAgICAgICAtMS40NjhlLTAxICA0LjQwNmUtMDEgIC0wLjMzMyAwLjczOTI1NSAgICBcbmRpc3BsYWNlbWVudCAgICAgICAgICAgICAgICAgICAgMi45MTJlLTAzICA3LjEwM2UtMDMgICAwLjQxMCAwLjY4MjA1MyAgICBcbnBvbHkod2VpZ2h0LCAyKTEgICAgICAgICAgICAgICAtOC4xOTZlKzAxICA5LjExM2UrMDAgIC04Ljk5NCAgPCAyZS0xNiAqKipcbnBvbHkod2VpZ2h0LCAyKTIgICAgICAgICAgICAgICAgMS41MTFlKzAxICA0LjQ3NmUrMDAgICAzLjM3NiAwLjAwMDgxMiAqKipcbnllYXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgNy43MTBlLTAxICA0LjUwM2UtMDIgIDE3LjEyMyAgPCAyZS0xNiAqKipcbm9yaWdpbiAgICAgICAgICAgICAgICAgICAgICAgICAgNy40MzdlLTAxICAyLjUzMGUtMDEgICAyLjkzOSAwLjAwMzQ5MCAqKiBcbnBvbHkoaG9yc2Vwb3dlciwgMikxOmN5bGluZGVycyAgMS4yMTdlKzAxICA5LjA3M2UrMDAgICAxLjM0MSAwLjE4MDYzNCAgICBcbnBvbHkoaG9yc2Vwb3dlciwgMikyOmN5bGluZGVycyAtMS44NjdlKzAwICA0Ljg1NGUrMDAgIC0wLjM4NSAwLjcwMDY5OCAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMi45MDMgb24gMzgxIGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC44NjUyLFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC44NjE3IFxuRi1zdGF0aXN0aWM6IDI0NC41IG9uIDEwIGFuZCAzODEgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) * cylinders + displacement + 
+    poly(weight, 2) + year + origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.8668 -1.5915 -0.1379  1.4556 11.8590 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                    -3.698e+01  4.281e+00  -8.638  &lt; 2e-16 ***
+poly(horsepower, 2)1           -1.028e+02  6.942e+01  -1.481 0.139334    
+poly(horsepower, 2)2            2.087e+01  3.712e+01   0.562 0.574272    
+cylinders                      -1.468e-01  4.406e-01  -0.333 0.739255    
+displacement                    2.912e-03  7.103e-03   0.410 0.682053    
+poly(weight, 2)1               -8.196e+01  9.113e+00  -8.994  &lt; 2e-16 ***
+poly(weight, 2)2                1.511e+01  4.476e+00   3.376 0.000812 ***
+year                            7.710e-01  4.503e-02  17.123  &lt; 2e-16 ***
+origin                          7.437e-01  2.530e-01   2.939 0.003490 ** 
+poly(horsepower, 2)1:cylinders  1.217e+01  9.073e+00   1.341 0.180634    
+poly(horsepower, 2)2:cylinders -1.867e+00  4.854e+00  -0.385 0.700698    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.903 on 381 degrees of freedom
+Multiple R-squared:  0.8652,    Adjusted R-squared:  0.8617 
+F-statistic: 244.5 on 10 and 381 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTQgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBmYXZvcml0ZSBtb2RlbFxuc3VtbWFyeShsbS5maXQxNClcbmBgYCJ9 -->
+<pre class="r"><code>lm.fit14 &lt;- lm(mpg~poly(horsepower,2) + poly(weight,2) + year + origin) # favorite model
+summary(lm.fit14)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgXG4gICAgb3JpZ2luKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tOC44ODQxIC0xLjcyOTIgLTAuMTIxMSAgMS41ODYwIDEyLjEzNjAgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAtMzYuODA3ODkgICAgMy4zOTI0MSAtMTAuODUwICA8IDJlLTE2ICoqKlxucG9seShob3JzZXBvd2VyLCAyKTEgLTI0LjIyMjEzICAgIDYuNDUyNzcgIC0zLjc1NCAwLjAwMDIwMSAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikyICAxOC4yMzE2NiAgICAzLjczNDgzICAgNC44ODIgMS41NWUtMDYgKioqXG5wb2x5KHdlaWdodCwgMikxICAgICAtODAuMzc2OTQgICAgNi44ODg0NyAtMTEuNjY4ICA8IDJlLTE2ICoqKlxucG9seSh3ZWlnaHQsIDIpMiAgICAgIDIxLjM5OTg1ICAgIDMuNjg0MTUgICA1LjgwOSAxLjMyZS0wOCAqKipcbnllYXIgICAgICAgICAgICAgICAgICAgMC43NzkxNSAgICAwLjA0NDcxICAxNy40MjYgIDwgMmUtMTYgKioqXG5vcmlnaW4gICAgICAgICAgICAgICAgIDAuNjY4NTMgICAgMC4yMzcyMSAgIDIuODE4IDAuMDA1MDc3ICoqIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAyLjkxNSBvbiAzODUgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjg2MjYsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjg2MDUgXG5GLXN0YXRpc3RpYzogICA0MDMgb24gNiBhbmQgMzg1IERGLCAgcC12YWx1ZTogPCAyLjJlLTE2XG4ifQ== -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + poly(weight, 2) + year + 
+    origin)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.8841 -1.7292 -0.1211  1.5860 12.1360 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          -36.80789    3.39241 -10.850  &lt; 2e-16 ***
+poly(horsepower, 2)1 -24.22213    6.45277  -3.754 0.000201 ***
+poly(horsepower, 2)2  18.23166    3.73483   4.882 1.55e-06 ***
+poly(weight, 2)1     -80.37694    6.88847 -11.668  &lt; 2e-16 ***
+poly(weight, 2)2      21.39985    3.68415   5.809 1.32e-08 ***
+year                   0.77915    0.04471  17.426  &lt; 2e-16 ***
+origin                 0.66853    0.23721   2.818 0.005077 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.915 on 385 degrees of freedom
+Multiple R-squared:  0.8626,    Adjusted R-squared:  0.8605 
+F-statistic:   403 on 6 and 385 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsbS5maXQxNyA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyLDIpIDogYWNjZWxlcmF0aW9uIDogcG9seSh3ZWlnaHQsMikgKyB5ZWFyICsgb3JpZ2luKSAjIGJhZCBtb2RlbFxuIyBzdW1tYXJ5KGxtLmZpdDE3KVxuXG5sbS5maXQxN2IgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbiArIGFjY2VsZXJhdGlvbilcbnN1bW1hcnkobG0uZml0MTdiKVxuYGBgIn0= -->
+<pre class="r"><code># lm.fit17 &lt;- lm(mpg~poly(horsepower,2) : acceleration : poly(weight,2) + year + origin) # bad model
+# summary(lm.fit17)
+
+lm.fit17b &lt;- lm(mpg~poly(horsepower,2) + poly(weight,2) + year + origin + acceleration)
+summary(lm.fit17b)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgXG4gICAgb3JpZ2luICsgYWNjZWxlcmF0aW9uKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tOS4wMjcyIC0xLjYyNDUgLTAuMTc2NSAgMS40NTQ4IDEyLjEzMDggXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAtMzMuMzYyNTAgICAgMy44MDc4MyAgLTguNzYyICA8IDJlLTE2ICoqKlxucG9seShob3JzZXBvd2VyLCAyKTEgLTM5LjY0MzkwICAgMTAuMTQ2ODkgIC0zLjkwNyAgMC4wMDAxMSAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikyICAyMS45NTU3NiAgICA0LjE3NjExICAgNS4yNTcgMi40M2UtMDcgKioqXG5wb2x5KHdlaWdodCwgMikxICAgICAtNzAuMjY1NDEgICAgOC41Nzg3NiAgLTguMTkxIDMuOTBlLTE1ICoqKlxucG9seSh3ZWlnaHQsIDIpMiAgICAgIDE5LjQ4MDIwICAgIDMuNzk4NDAgICA1LjEyOSA0LjY0ZS0wNyAqKipcbnllYXIgICAgICAgICAgICAgICAgICAgMC43NzA4NCAgICAwLjA0NDc1ICAxNy4yMjYgIDwgMmUtMTYgKioqXG5vcmlnaW4gICAgICAgICAgICAgICAgIDAuNzI1MzMgICAgMC4yMzgxMCAgIDMuMDQ2ICAwLjAwMjQ4ICoqIFxuYWNjZWxlcmF0aW9uICAgICAgICAgIC0wLjE4NjgxICAgIDAuMDk1MDkgIC0xLjk2NCAgMC4wNTAyMCAuICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5SZXNpZHVhbCBzdGFuZGFyZCBlcnJvcjogMi45MDQgb24gMzg0IGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC44NjQsXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjg2MTUgXG5GLXN0YXRpc3RpYzogMzQ4LjUgb24gNyBhbmQgMzg0IERGLCAgcC12YWx1ZTogPCAyLjJlLTE2XG4ifQ== -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + poly(weight, 2) + year + 
+    origin + acceleration)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.0272 -1.6245 -0.1765  1.4548 12.1308 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          -33.36250    3.80783  -8.762  &lt; 2e-16 ***
+poly(horsepower, 2)1 -39.64390   10.14689  -3.907  0.00011 ***
+poly(horsepower, 2)2  21.95576    4.17611   5.257 2.43e-07 ***
+poly(weight, 2)1     -70.26541    8.57876  -8.191 3.90e-15 ***
+poly(weight, 2)2      19.48020    3.79840   5.129 4.64e-07 ***
+year                   0.77084    0.04475  17.226  &lt; 2e-16 ***
+origin                 0.72533    0.23810   3.046  0.00248 ** 
+acceleration          -0.18681    0.09509  -1.964  0.05020 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.904 on 384 degrees of freedom
+Multiple R-squared:  0.864, Adjusted R-squared:  0.8615 
+F-statistic: 348.5 on 7 and 384 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG0uZml0MTdjIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBwb2x5KHdlaWdodCwyKSArIHllYXIgKyBvcmlnaW4gKyBhY2NlbGVyYXRpb24gKyB3ZWlnaHQ6aG9yc2Vwb3dlcilcbnN1bW1hcnkobG0uZml0MTdjKVxuYGBgIn0= -->
+<pre class="r"><code>lm.fit17c &lt;- lm(mpg~poly(horsepower,2) + poly(weight,2) + year + origin + acceleration + weight:horsepower)
+summary(lm.fit17c)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHBvbHkoaG9yc2Vwb3dlciwgMikgKyBwb2x5KHdlaWdodCwgMikgKyB5ZWFyICsgXG4gICAgb3JpZ2luICsgYWNjZWxlcmF0aW9uICsgd2VpZ2h0OmhvcnNlcG93ZXIpXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgICAgIE1heCBcbi04Ljk1MTQgLTEuNjE5MCAtMC4xODY1ICAxLjQxNjIgMTIuMDk1NiBcblxuQ29lZmZpY2llbnRzOlxuICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWUgUHIoPnx0fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAtMy42NzNlKzAxICA3LjMzM2UrMDAgIC01LjAxMCA4LjM0ZS0wNyAqKipcbnBvbHkoaG9yc2Vwb3dlciwgMikxIC02LjU0NWUrMDEgIDQuOTAxZSswMSAgLTEuMzM1ICAwLjE4MjU0ICAgIFxucG9seShob3JzZXBvd2VyLCAyKTIgIDEuODk2ZSswMSAgNi45NjVlKzAwICAgMi43MjIgIDAuMDA2NzkgKiogXG5wb2x5KHdlaWdodCwgMikxICAgICAtOC45NjJlKzAxICAzLjY5NmUrMDEgIC0yLjQyNCAgMC4wMTU4MCAqICBcbnBvbHkod2VpZ2h0LCAyKTIgICAgICAxLjU1NmUrMDEgIDguMjE0ZSswMCAgIDEuODk1ICAwLjA1ODkxIC4gIFxueWVhciAgICAgICAgICAgICAgICAgIDcuNjkwZS0wMSAgNC40OTJlLTAyICAxNy4xMTcgIDwgMmUtMTYgKioqXG5vcmlnaW4gICAgICAgICAgICAgICAgNy4zMjJlLTAxICAyLjM4N2UtMDEgICAzLjA2OCAgMC4wMDIzMSAqKiBcbmFjY2VsZXJhdGlvbiAgICAgICAgIC0xLjgyOWUtMDEgIDkuNTQ1ZS0wMiAgLTEuOTE2ICAwLjA1NjA2IC4gIFxud2VpZ2h0OmhvcnNlcG93ZXIgICAgIDEuMDE1ZS0wNSAgMS44ODVlLTA1ICAgMC41MzggIDAuNTkwNzYgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDIuOTA3IG9uIDM4MyBkZWdyZWVzIG9mIGZyZWVkb21cbk11bHRpcGxlIFItc3F1YXJlZDogIDAuODY0MSxcdEFkanVzdGVkIFItc3F1YXJlZDogIDAuODYxMyBcbkYtc3RhdGlzdGljOiAzMDQuNCBvbiA4IGFuZCAzODMgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = mpg ~ poly(horsepower, 2) + poly(weight, 2) + year + 
+    origin + acceleration + weight:horsepower)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.9514 -1.6190 -0.1865  1.4162 12.0956 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          -3.673e+01  7.333e+00  -5.010 8.34e-07 ***
+poly(horsepower, 2)1 -6.545e+01  4.901e+01  -1.335  0.18254    
+poly(horsepower, 2)2  1.896e+01  6.965e+00   2.722  0.00679 ** 
+poly(weight, 2)1     -8.962e+01  3.696e+01  -2.424  0.01580 *  
+poly(weight, 2)2      1.556e+01  8.214e+00   1.895  0.05891 .  
+year                  7.690e-01  4.492e-02  17.117  &lt; 2e-16 ***
+origin                7.322e-01  2.387e-01   3.068  0.00231 ** 
+acceleration         -1.829e-01  9.545e-02  -1.916  0.05606 .  
+weight:horsepower     1.015e-05  1.885e-05   0.538  0.59076    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.907 on 383 degrees of freedom
+Multiple R-squared:  0.8641,    Adjusted R-squared:  0.8613 
+F-statistic: 304.4 on 8 and 383 DF,  p-value: &lt; 2.2e-16</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxlY3R1cmUgMyBMYWIiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpBcHBseSByZWdyZXNzaW9uIG9uIHRoZSBBdXRvIGRhdGFzZXQgdG8gdHJhaW4gYSBtb2RlbCB0aGF0IHdpbGwgcHJlZGljdCBtcGcuDQoNCmBgYHtyfQ0KbGlicmFyeShJU0xSKQ0KbGlicmFyeShjYXIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2FwbWluZGVyKQ0Kc3VtbWFyeShBdXRvKQ0KYXR0YWNoKEF1dG8pDQpgYGANCg0KZml0IGEgc2ltcGxlIGxpbmVhciByZWdyZXNzaW9uIGFuZCBjcmVhdGUgYSBzY2F0dGVycGxvdA0KDQpgYGB7cn0NCmxtLmZpdCA8LSBsbShtcGd+aG9yc2Vwb3dlcikNCnBsb3QoaG9yc2Vwb3dlciwgbXBnKQ0KYWJsaW5lKGxtLmZpdCkNCg0KbG0uZml0X3BvbHkyIDwtIGxtKG1wZ35ob3JzZXBvd2VyK0koaG9yc2Vwb3dlcl4yKSkNCmxpbmVzKHNvcnQoaG9yc2Vwb3dlciksIGZpdHRlZChsbS5maXRfcG9seTIpIFtvcmRlcihob3JzZXBvd2VyKV0sIGNvbCA9ICJyZWQiKQ0KDQpsbS5maXRfcG9seTUgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciw1KSkNCmxpbmVzKHNvcnQoaG9yc2Vwb3dlciksIGZpdHRlZChsbS5maXRfcG9seTUpIFtvcmRlcihob3JzZXBvd2VyKV0sIGNvbCA9ICJibHVlIikNCg0KYGBgDQoNClNjYXR0ZXJwbG90IHN1Z2dlc3RzIGEgcG93ZXIgbGF3IHJlbGF0aW9uc2hpcC4NCg0KUGxvdCBhIHBvbHlub21pYWwgcmVncmVzc2lvbg0KDQpgYGB7cn0NCmxtLmZpdDIgPC0gbG0obXBnfndlaWdodCkNCnBsb3Qod2VpZ2h0LCBtcGcpDQphYmxpbmUobG0uZml0MikNCg0KbG0uZml0Ml9wb2x5MiA8LSBsbShtcGd+d2VpZ2h0K0kod2VpZ2h0XjIpKQ0KbGluZXMoc29ydCh3ZWlnaHQpLCBmaXR0ZWQobG0uZml0Ml9wb2x5MikgW29yZGVyKHdlaWdodCldLCBjb2wgPSAicmVkIikNCg0KbG0uZml0Ml9wb2x5NSA8LSBsbShtcGd+cG9seSh3ZWlnaHQsNSkpDQpsaW5lcyhzb3J0KHdlaWdodCksIGZpdHRlZChsbS5maXQyX3BvbHk1KSBbb3JkZXIod2VpZ2h0KV0sIGNvbCA9ICJibHVlIikNCmBgYA0KDQpgYGB7cn0NCmxtLmZpdDMgPC0gbG0obXBnfmhvcnNlcG93ZXIqd2VpZ2h0KQ0Kc3VtbWFyeShsbS5maXQzKQ0KDQpsbS5maXQzX3BvbHkyIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIqd2VpZ2h0LCAyKSkNCnN1bW1hcnkobG0uZml0M19wb2x5MikNCg0KbG0uZml0M19wb2x5NSA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyKndlaWdodCw1KSkNCnN1bW1hcnkobG0uZml0M19wb2x5NSkNCmBgYA0KDQoNCmBgYHtyfQ0KYXR0YWNoKEF1dG8pDQpnZ3Bsb3QoZGF0YSA9IEF1dG8sIGFlcyhsb2cod2VpZ2h0KSwgbXBnKSkgKw0KICAgICAgICAgZ2VvbV9wb2ludCgpICsNCiAgICAgICAgIGdlb21fc21vb3RoKG1ldGhvZCA9ICJsbSIpDQoNCmdncGxvdChkYXRhID0gQXV0bywgYWVzKHdlaWdodCwgbXBnKSkgKw0KICAgICAgICAgZ2VvbV9wb2ludCgpICsNCiAgICAgICAgIGdlb21fc21vb3RoKG1ldGhvZCA9ICJsbSIpDQoNCnN1bW1hcnkobG0uZml0MikNCg0Kc3VtbWFyeShsbS5maXQyX3BvbHkyKQ0KDQpsbS5maXQ0IDwtIGxtKG1wZ35sb2cod2VpZ2h0KSkNCnN1bW1hcnkobG0uZml0NCkNCg0KbG0uZml0NF9wb2x5MiA8LSBsbShtcGd+cG9seShsb2cod2VpZ2h0KSwgMikpDQpzdW1tYXJ5KGxtLmZpdDRfcG9seTIpDQpgYGANCmBgYHtyfQ0KbG0uZml0NSA8LSBsbShtcGd+aG9yc2Vwb3dlciArIGxvZyh3ZWlnaHQpKQ0Kc3VtbWFyeShsbS5maXQ1KQ0KDQpsbS5maXQ2IDwtIGxtKG1wZ35ob3JzZXBvd2VyICsgcG9seSh3ZWlnaHQsIDIpKQ0Kc3VtbWFyeShsbS5maXQ2KQ0KDQpsbS5maXQ3IDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBwb2x5KHdlaWdodCwgMikpDQpzdW1tYXJ5KGxtLmZpdDcpDQoNCmxtLmZpdDggPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIGxvZyh3ZWlnaHQpKQ0Kc3VtbWFyeShsbS5maXQ4KQ0KDQpsbS5maXQ5IDwtIGxtKG1wZ35sb2coaG9yc2Vwb3dlcikgKyBsb2cod2VpZ2h0KSkgIyBiZXN0IG1vZGVsDQpzdW1tYXJ5KGxtLmZpdDkpDQoNCg0KbG0uZml0MTAgPC0gbG0obXBnfmxvZyhob3JzZXBvd2VyKSAqIGxvZyh3ZWlnaHQpKQ0Kc3VtbWFyeShsbS5maXQxMCkNCg0KbG0uZml0MTEgPC0gbG0obXBnfmxvZyhob3JzZXBvd2VyKSArIGxvZyh3ZWlnaHQpICsgeWVhcikgIyBiZXN0IG1vZGVsDQpzdW1tYXJ5KGxtLmZpdDExKQ0KDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxlY3R1cmUgMyBMYWIiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpBcHBseSByZWdyZXNzaW9uIG9uIHRoZSBBdXRvIGRhdGFzZXQgdG8gdHJhaW4gYSBtb2RlbCB0aGF0IHdpbGwgcHJlZGljdCBtcGcuDQoNCmBgYHtyfQ0KbGlicmFyeShJU0xSKQ0KbGlicmFyeShjYXIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2FwbWluZGVyKQ0Kc3VtbWFyeShBdXRvKQ0KYXR0YWNoKEF1dG8pDQpgYGANCg0KZml0IGEgc2ltcGxlIGxpbmVhciByZWdyZXNzaW9uIGFuZCBjcmVhdGUgYSBzY2F0dGVycGxvdA0KDQpgYGB7cn0NCmxtLmZpdCA8LSBsbShtcGd+aG9yc2Vwb3dlcikNCnBsb3QoaG9yc2Vwb3dlciwgbXBnKQ0KYWJsaW5lKGxtLmZpdCkNCg0KbG0uZml0X3BvbHkyIDwtIGxtKG1wZ35ob3JzZXBvd2VyK0koaG9yc2Vwb3dlcl4yKSkNCmxpbmVzKHNvcnQoaG9yc2Vwb3dlciksIGZpdHRlZChsbS5maXRfcG9seTIpIFtvcmRlcihob3JzZXBvd2VyKV0sIGNvbCA9ICJyZWQiKQ0KDQpsbS5maXRfcG9seTUgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciw1KSkNCmxpbmVzKHNvcnQoaG9yc2Vwb3dlciksIGZpdHRlZChsbS5maXRfcG9seTUpIFtvcmRlcihob3JzZXBvd2VyKV0sIGNvbCA9ICJibHVlIikNCg0KYGBgDQoNClNjYXR0ZXJwbG90IHN1Z2dlc3RzIGEgcG93ZXIgbGF3IHJlbGF0aW9uc2hpcC4NCg0KUGxvdCBhIHBvbHlub21pYWwgcmVncmVzc2lvbg0KDQpgYGB7cn0NCmxtLmZpdDIgPC0gbG0obXBnfndlaWdodCkNCnBsb3Qod2VpZ2h0LCBtcGcpDQphYmxpbmUobG0uZml0MikNCg0KbG0uZml0Ml9wb2x5MiA8LSBsbShtcGd+d2VpZ2h0K0kod2VpZ2h0XjIpKQ0KbGluZXMoc29ydCh3ZWlnaHQpLCBmaXR0ZWQobG0uZml0Ml9wb2x5MikgW29yZGVyKHdlaWdodCldLCBjb2wgPSAicmVkIikNCg0KbG0uZml0Ml9wb2x5NSA8LSBsbShtcGd+cG9seSh3ZWlnaHQsNSkpDQpsaW5lcyhzb3J0KHdlaWdodCksIGZpdHRlZChsbS5maXQyX3BvbHk1KSBbb3JkZXIod2VpZ2h0KV0sIGNvbCA9ICJibHVlIikNCmBgYA0KDQpgYGB7cn0NCmxtLmZpdDMgPC0gbG0obXBnfmhvcnNlcG93ZXIqd2VpZ2h0KQ0Kc3VtbWFyeShsbS5maXQzKQ0KDQpsbS5maXQzX3BvbHkyIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIqd2VpZ2h0LCAyKSkNCnN1bW1hcnkobG0uZml0M19wb2x5MikNCg0KbG0uZml0M19wb2x5NSA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyKndlaWdodCw1KSkNCnN1bW1hcnkobG0uZml0M19wb2x5NSkNCmBgYA0KDQoNCmBgYHtyfQ0KYXR0YWNoKEF1dG8pDQpnZ3Bsb3QoZGF0YSA9IEF1dG8sIGFlcyhsb2cod2VpZ2h0KSwgbXBnKSkgKw0KICAgICAgICAgZ2VvbV9wb2ludCgpICsNCiAgICAgICAgIGdlb21fc21vb3RoKG1ldGhvZCA9ICJsbSIpDQoNCmdncGxvdChkYXRhID0gQXV0bywgYWVzKHdlaWdodCwgbXBnKSkgKw0KICAgICAgICAgZ2VvbV9wb2ludCgpICsNCiAgICAgICAgIGdlb21fc21vb3RoKG1ldGhvZCA9ICJsbSIpDQoNCnN1bW1hcnkobG0uZml0MikNCg0Kc3VtbWFyeShsbS5maXQyX3BvbHkyKQ0KDQpsbS5maXQ0IDwtIGxtKG1wZ35sb2cod2VpZ2h0KSkNCnN1bW1hcnkobG0uZml0NCkNCg0KbG0uZml0NF9wb2x5MiA8LSBsbShtcGd+cG9seShsb2cod2VpZ2h0KSwgMikpDQpzdW1tYXJ5KGxtLmZpdDRfcG9seTIpDQpgYGANCmBgYHtyfQ0KbG0uZml0NSA8LSBsbShtcGd+aG9yc2Vwb3dlciArIGxvZyh3ZWlnaHQpKQ0Kc3VtbWFyeShsbS5maXQ1KQ0KDQpsbS5maXQ2IDwtIGxtKG1wZ35ob3JzZXBvd2VyICsgcG9seSh3ZWlnaHQsIDIpKQ0Kc3VtbWFyeShsbS5maXQ2KQ0KDQpsbS5maXQ3IDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBwb2x5KHdlaWdodCwgMikpDQpzdW1tYXJ5KGxtLmZpdDcpDQoNCmxtLmZpdDggPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIGxvZyh3ZWlnaHQpKQ0Kc3VtbWFyeShsbS5maXQ4KQ0KDQpsbS5maXQ5IDwtIGxtKG1wZ35sb2coaG9yc2Vwb3dlcikgKyBsb2cod2VpZ2h0KSkNCnN1bW1hcnkobG0uZml0OSkNCg0KDQpsbS5maXQxMCA8LSBsbShtcGd+bG9nKGhvcnNlcG93ZXIpICogbG9nKHdlaWdodCkpDQpzdW1tYXJ5KGxtLmZpdDEwKQ0KDQpsbS5maXQxMSA8LSBsbShtcGd+bG9nKGhvcnNlcG93ZXIpICsgbG9nKHdlaWdodCkgKyB5ZWFyKQ0Kc3VtbWFyeShsbS5maXQxMSkNCg0KbG0uZml0MTIgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIGxvZyh3ZWlnaHQpICsgeWVhcikNCnN1bW1hcnkobG0uZml0MTIpDQoNCmxtLmZpdDEzIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBvcmlnaW4pICMgZ29vZCBtb2RlbA0Kc3VtbWFyeShsbS5maXQxMykNCg0KbG0uZml0MTQgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBmYXZvcml0ZSBtb2RlbA0Kc3VtbWFyeShsbS5maXQxNCkNCg0KbG0uZml0MTRiIDwtIGxtKG1wZ35sb2coaG9yc2Vwb3dlcikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBvcmlnaW4pICMgc2Vjb25kIGZhdm9yaXRlIG1vZGVsDQpzdW1tYXJ5KGxtLmZpdDE0YikNCg0KbG0uZml0MTRjIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBsb2cod2VpZ2h0KSArIHllYXIgKyBvcmlnaW4pDQpzdW1tYXJ5KGxtLmZpdDE0YykNCg0KbG0uZml0MTUgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSAqIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBnb29kIG1vZGVsDQpzdW1tYXJ5KGxtLmZpdDE1KQ0KDQpsbS5maXQxNiA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyLDIpICogZGlzcGxhY2VtZW50ICsgcG9seSh3ZWlnaHQsMikgKyB5ZWFyICsgb3JpZ2luKSAjIGdvb2QgbW9kZWwNCnN1bW1hcnkobG0uZml0MTYpDQoNCiMgbG0uZml0MTcgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbiArIGN5bGluZGVycykgIyBhZGRpbmcgY3lsaW5kZXJzIHRvIG1vZGVsIDE0IGRvZXMgbm90aGluZw0KIyBzdW1tYXJ5KGxtLmZpdDE3KQ0KDQpsbS5maXQxNiA8LSBsbShtcGd+cG9seShob3JzZXBvd2VyLDIpICogY3lsaW5kZXJzICsgZGlzcGxhY2VtZW50ICsgcG9seSh3ZWlnaHQsMikgKyB5ZWFyICsgb3JpZ2luKSAjIG9rIG1vZGVsDQpzdW1tYXJ5KGxtLmZpdDE2KQ0KDQoNCmBgYA0KDQpgYGB7cn0NCmxtLmZpdDE0IDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBwb2x5KHdlaWdodCwyKSArIHllYXIgKyBvcmlnaW4pICMgZmF2b3JpdGUgbW9kZWwNCnN1bW1hcnkobG0uZml0MTQpDQoNCiMgbG0uZml0MTcgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSA6IGFjY2VsZXJhdGlvbiA6IHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbikgIyBiYWQgbW9kZWwNCiMgc3VtbWFyeShsbS5maXQxNykNCg0KbG0uZml0MTdiIDwtIGxtKG1wZ35wb2x5KGhvcnNlcG93ZXIsMikgKyBwb2x5KHdlaWdodCwyKSArIHllYXIgKyBvcmlnaW4gKyBhY2NlbGVyYXRpb24pDQpzdW1tYXJ5KGxtLmZpdDE3YikNCg0KDQpsbS5maXQxN2MgPC0gbG0obXBnfnBvbHkoaG9yc2Vwb3dlciwyKSArIHBvbHkod2VpZ2h0LDIpICsgeWVhciArIG9yaWdpbiArIGFjY2VsZXJhdGlvbiArIHdlaWdodDpob3JzZXBvd2VyKQ0Kc3VtbWFyeShsbS5maXQxN2MpDQoNCg0KYGBgDQoNCg==</div>
 
 
 
