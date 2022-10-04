@@ -1,0 +1,104 @@
+---
+title: "Lecture 3 Lab"
+output: html_notebook
+---
+
+Apply regression on the Auto dataset to train a model that will predict mpg.
+
+```{r}
+library(ISLR)
+library(car)
+library(tidyverse)
+library(gapminder)
+summary(Auto)
+attach(Auto)
+```
+
+fit a simple linear regression and create a scatterplot
+
+```{r}
+lm.fit <- lm(mpg~horsepower)
+plot(horsepower, mpg)
+abline(lm.fit)
+
+lm.fit_poly2 <- lm(mpg~horsepower+I(horsepower^2))
+lines(sort(horsepower), fitted(lm.fit_poly2) [order(horsepower)], col = "red")
+
+lm.fit_poly5 <- lm(mpg~poly(horsepower,5))
+lines(sort(horsepower), fitted(lm.fit_poly5) [order(horsepower)], col = "blue")
+
+```
+
+Scatterplot suggests a power law relationship.
+
+Plot a polynomial regression
+
+```{r}
+lm.fit2 <- lm(mpg~weight)
+plot(weight, mpg)
+abline(lm.fit2)
+
+lm.fit2_poly2 <- lm(mpg~weight+I(weight^2))
+lines(sort(weight), fitted(lm.fit2_poly2) [order(weight)], col = "red")
+
+lm.fit2_poly5 <- lm(mpg~poly(weight,5))
+lines(sort(weight), fitted(lm.fit2_poly5) [order(weight)], col = "blue")
+```
+
+```{r}
+lm.fit3 <- lm(mpg~horsepower*weight)
+summary(lm.fit3)
+
+lm.fit3_poly2 <- lm(mpg~poly(horsepower*weight, 2))
+summary(lm.fit3_poly2)
+
+lm.fit3_poly5 <- lm(mpg~poly(horsepower*weight,5))
+summary(lm.fit3_poly5)
+```
+
+
+```{r}
+attach(Auto)
+ggplot(data = Auto, aes(log(weight), mpg)) +
+         geom_point() +
+         geom_smooth(method = "lm")
+
+ggplot(data = Auto, aes(weight, mpg)) +
+         geom_point() +
+         geom_smooth(method = "lm")
+
+summary(lm.fit2)
+
+summary(lm.fit2_poly2)
+
+lm.fit4 <- lm(mpg~log(weight))
+summary(lm.fit4)
+
+lm.fit4_poly2 <- lm(mpg~poly(log(weight), 2))
+summary(lm.fit4_poly2)
+```
+```{r}
+lm.fit5 <- lm(mpg~horsepower + log(weight))
+summary(lm.fit5)
+
+lm.fit6 <- lm(mpg~horsepower + poly(weight, 2))
+summary(lm.fit6)
+
+lm.fit7 <- lm(mpg~poly(horsepower,2) + poly(weight, 2))
+summary(lm.fit7)
+
+lm.fit8 <- lm(mpg~poly(horsepower,2) + log(weight))
+summary(lm.fit8)
+
+lm.fit9 <- lm(mpg~log(horsepower) + log(weight)) # best model
+summary(lm.fit9)
+
+
+lm.fit10 <- lm(mpg~log(horsepower) * log(weight))
+summary(lm.fit10)
+
+lm.fit11 <- lm(mpg~log(horsepower) + log(weight) + year) # best model
+summary(lm.fit11)
+
+```
+

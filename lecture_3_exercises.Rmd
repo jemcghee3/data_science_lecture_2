@@ -1,0 +1,92 @@
+---
+title: "Lecture 3 - Linear Regression Exercises"
+output: html_notebook
+---
+First, load the file
+```{r}
+Advertising <- read.csv("./Advertising.csv")
+```
+
+Summarize it
+```{r}
+dim(Advertising)
+summary(Advertising)
+```
+
+Is there a linear relationship?
+```{r}
+plot(Advertising$TV, Advertising$sales)
+```
+
+We can do a least squares fit pretty easily
+```{r}
+lm.fit <- lm(Advertising$sales~Advertising$TV)
+```
+
+By attaching the dataset, we can call the columns directly.
+```{r}
+attach(Advertising)
+lm.fit <- lm(sales~TV)
+summary(lm.fit)
+```
+We can use the function confint() to find the confidence interval for 95%
+```{r}
+confint(lm.fit)
+```
+## Hypothesis testing
+
+p-value: probability of observing a value equal or larger than t
+
+If p-value is small enough (alpha) is less than our cutoff (5% or 1%), we can reject the null hypothesis and accept that there is a relationship.
+
+Need high t-value (absolute value) and low p-value
+
+## R-squared and RSE
+
+This checks how good your line fits the data.
+Want RSE to be low, R-squared to be high.
+
+RSE is a measure of units of Y, so not always clear what value it *should* be.
+
+R-squared is deviation from the mean. A high value (closer to 1), means the x-variable explains that proportion of the change in Y. A zero value means the X does not explain any change in Y.
+
+# Multiple Regression
+
+Multiple variables
+
+```{r}
+attach(Advertising)
+lm.fit <- lm(data = Advertising, formula = sales~TV+radio+newspaper) # 3 predictors
+lm.fit_multi <- lm(sales~., data = Advertising) # short-hand to use all predictors
+lm.fit_single <- lm(sales~newspaper)
+
+summary(lm.fit_multi)
+summary(lm.fit_single)
+```
+
+Building three models by adding variables
+```{r}
+model1 <- lm(formula = sales ~ TV, data = Advertising)
+summary(model1)
+
+model2 <- lm(formula = sales ~ TV + radio, data = Advertising)
+summary(model2)
+
+model3 <- lm(formula = sales ~ ., data = Advertising)
+summary(model3)
+```
+# Extensions of the Linear Model
+
+## Variables Interact
+
+Maybe two variables interact to increase the effect (example: two medications taken together, TV and radio ads at the same time)
+
+We can see that interaction
+
+```{r}
+lm.fit1 <- lm(formula = sales ~TV*radio, data = Advertising) # we use * between the variables so R considers them independently as well as together
+summary(lm.fit1)
+```
+
+## Non-Linear Relationships
+
