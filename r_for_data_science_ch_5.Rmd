@@ -472,4 +472,5 @@ diamonds %>%
  ggplot(mapping = aes(x = cut, y = color)) +
  geom_tile(mapping = aes(fill = n))
 ```
+
 # Two Continuous Variables

@@ -147,3 +147,5 @@ summary(lm.fit17c)
 
 ```
 
+```
+
