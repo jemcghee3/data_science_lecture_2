@@ -1,0 +1,198 @@
+---
+title: "Lecture 4 Exercises"
+output: html_notebook
+---
+# Exercise 1
+
+First, load libraries.
+```{r}
+library(ISLR)
+library(ggplot2)
+library(gridExtra)
+library(class)
+library(MASS)
+```
+
+Get rid of old stuff
+```{r}
+rm(list=ls())
+par(mfrow=c(1,1))
+```
+
+set printing preferences
+```{r}
+options(scipen=99)
+options(digits=4) 
+```
+
+Explore "default" dataset
+```{r}
+summary(Default)
+attach(Default)
+```
+Display the distribution of balance and income
+```{r}
+p1 <- ggplot(data = Default, mapping = aes(x = balance, y = income)) + geom_point(mapping = aes(col = default))
+p2 <- ggplot(data = Default, mapping = aes(x = default, y = balance, fill = default)) + geom_boxplot()
+p3 <- ggplot(data = Default, mapping = aes(x = default, y = income, fill = default)) + geom_boxplot()
+grid.arrange(p1, p2, p3, nrow = 1, widths = c(2,2,2))
+par(mfrow=c(1,1))
+```
+
+Create training and test data
+```{r}
+indices <- sort(sample(1:max(balance), 100)) # select 100 samples
+test.data <- Default[indices,]
+training.data <- Default[-indices,]
+p1 <- ggplot() + geom_point(data = training.data, aes(x=balance, y=default), color='steelblue3') + geom_point(data = test.data,aes(x=balance, y=default), color='darkred', size =4)
+p2 <- ggplot() + geom_point(data = training.data, aes(x=balance, y=income), color='steelblue3') + geom_point(data = test.data,aes(x=balance, y=income), color='darkred', size =4)
+grid.arrange(p1,p2, nrow=1)
+
+```
+
+Try to interpret the plots.
+1.  What patterns can you observe?
+People who default have a higher balance than those do do not.
+
+2.  What characteristics of the data catch your eye?
+There does not appear to be a correlation between income and balance or between income and default.
+
+# Exercise 2
+Applying and Evaluating k-Nearest Neighbors
+
+Convert training and test data to k-NN specific format
+```{r}
+training.data.predictors <- cbind(training.data$balance, training.data$income)
+test.data.predictors <- cbind(test.data$balance, test.data$income)
+training.data.class <- training.data$default
+```
+
+Fit the k-NN model with k=1
+```{r}
+set.seed (1)
+knn.pred <- knn(training.data.predictors, test.data.predictors, training.data.class, k=1)
+```
+
+Confusion Matrix
+```{r}
+table(knn.pred, test.data$default)
+```
+
+Estimate the test error rate
+```{r}
+mean(knn.pred != test.data$default)
+```
+
+Try with k = 3
+```{r}
+set.seed (1)
+knn.pred <- knn(training.data.predictors, test.data.predictors, training.data.class, k=3)
+table(knn.pred, test.data$default)
+mean(knn.pred != test.data$default)
+```
+
+Try with k = 100
+```{r}
+set.seed (1)
+knn.pred <- knn(training.data.predictors, test.data.predictors, training.data.class, k=100)
+table(knn.pred, test.data$default)
+mean(knn.pred != test.data$default)
+```
+1.  Compare and interpret the results from the three different models.
+The first model (k = 1) has the highest test error rate. This is because it is unable to ignore outliers in the training data.
+The second model (k = 3) has the lowest test error rate. It adjusts to the data better and so has fewer false positives.
+The third model (k = 100) is under fitted to the data. It has no false positives but that is because it never predicts default. It has a higher error rate than the second model, but lower than the first model.
+
+# Fitting a Logistic Regression Model
+
+Logistic Regression with 1 Predictor (One Predictor)
+
+Fitting a logistical regression model to the training data
+```{r}
+glm.fit <- glm(default~balance, family="binomial", data = training.data)
+summary(glm.fit)
+```
+# Exercise 4 - Making Prediction
+
+Predicting the training data
+```{r}
+pred.train.lin <- predict(glm.fit) # No data set is supplied to the predict() function: the probabilities are computed for the training data that was used to fit the logistic regression model.
+# Notice: Without the type option specified in predict() we get the linear predictor scale (see plot below)
+pred.train.lin.df <- data.frame(balance = training.data$balance, pred.train.lin=pred.train.lin) # make it a data frae for plotting
+ggplot() + 
+  geom_point(data = pred.train.lin.df, aes(x = balance, y = pred.train.lin, col = training.data$default)) +
+  geom_hline(yintercept = 0) +
+  geom_hline(yintercept = 1) +
+  ylim(-15,2) # plot
+```
+
+```{r}
+pred.train.probs <- predict(glm.fit, type = "response") # with type = "response", we get the response variable scale, i.e., the probabilities
+pred.train.probs.df <- data.frame(balance = training.data$balance, pred.train.probs=pred.train.probs) # make it a data frame for plotting
+ggplot() + 
+  geom_point(data = pred.train.probs.df, aes(x = balance, y = pred.train.probs, col=training.data$default)) +
+  geom_hline(yintercept = 0) +
+  geom_hline(yintercept = 1) # plot
+```
+
+## Predicting the TEST data PROBABILITIES
+
+```{r}
+pred.test.probs <- predict(glm.fit, test.data, type = "response")
+pred.test.probs.df <- data.frame(balance = test.data$balance, pred.test.probs=pred.test.probs) # make it a data frame for plotting
+ggplot() +
+  geom_point(data = pred.test.probs.df, aes(x = balance, y = pred.test.probs, col = test.data$default, size = 5)) +
+  geom_hline(yintercept = 0) +
+  geom_hline(yintercept = 1) +
+  geom_hline(yintercept = 0.5, linetype = "dashed") +
+  ylim(0,1)
+```
+
+Predict the TEST data CLASSES
+```{r}
+pred.test.classes <- rep("No", nrow(test.data)) # In order to predict the classes, we must convert the predictions into class labels, Yes or No. We start by converting all to No.
+pred.test.classes[pred.test.probs > 0.5] <- "Yes" # Set to Yes all with probability greater than 50%
+pred.test.classes.df <- data.frame(balance = test.data$balance, pred.test.classes = pred.test.classes) # make it a data frame for plotting
+ggplot() +
+  geom_point(data = pred.test.classes.df, aes(x = balance, y = pred.test.classes, col = test.data$default, size = 5))
+```
+
+Confusion Matrix
+```{r}
+table(test.data$default, pred.test.classes)
+```
+
+Calculating the validation error rate (percentage of incorrectly classified samples) as an estimate of the test error rate
+```{r}
+mean(pred.test.classes != test.data$default)
+```
+Predicting probabilities and classes for a balance of 1000 and 2000 dollars.
+```{r}
+new.data <- data.frame(student = c("No", "No"), balance = c(1000, 2000), income = c(1000, 2000)) # student and income and arbitrarily set, since they will not be used to predict
+predict(glm.fit, newdata = new.data, type = "response")
+```
+1.  Try the code for yourself.
+Done
+
+2.  Interpret the plots of the test data predictions
+The test probabilities plot shows that there were not really many observations in the test group that had a high balance and so were likely to default. It also had three times more false positives than true positives. 
+
+3.  Interpret the results of the confusion matrix and of the test error rate, and compare it with the outputs of your k-NN models.
+The k-NN for k = 3 had a confusion matrix of 94-2-2-2, compared to 93-3-3-1 for the logarithmic regression. 
+The test error rate of the k=3-NN model was 0.04, compared to 0.06 validation error rate in the logarithmic regression.
+So the k-NN model performed better than the logarithmic model when k = 3.
+
+# Exercise 5 - Making Predictions with Multiple Predictors
+
+Logistical regression with more than one predictor (including qualitative predictors)
+
+Fitting the model to the training data
+```{r}
+glm.fit <- glm(default~balance + student +income, family = "binomial", data = Default)
+summary(glm.fit)
+```
+Predicting probabilities and classes for a balance of 1000 and 2000 dollars
+```{r}
+new.data <- data.frame(student = c("No", "No"), balance = c(1000,2000), income = c(1000,2000)) # student and income arbitrary, since not used to predict
+predict(glm.fit, newdata = new.data, type = "response")
+```
