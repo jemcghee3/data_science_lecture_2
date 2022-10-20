@@ -1,0 +1,216 @@
+---
+title: "Lecture 5 Exercises"
+output: html_notebook
+---
+
+Resampling Methods
+
+# Exercise 1 - The Validation Set Approach
+
+```{r}
+library(ISLR)
+library(boot)
+```
+
+The Auto data set is contained in the ISLR package
+```{r}
+str(Auto)
+attach(Auto)
+```
+Define training and test data
+```{r}
+set.seed(1)
+(train=sample(nrow(Auto)/2)) # generate indices of a training data set by random sampling half of the observation indices of Auto
+AutoTrain <- Auto[train,] # training data
+AutoTest<- Auto[-train,] # test data
+```
+Fit 3 different regression models to the training data: Which model gives a better fit?
+
+```{r}
+(lm.fit <- lm(mpg~horsepower, data = AutoTrain)) # linear regression
+(lm.fit2 <- lm(mpg~poly(horsepower,2), data = AutoTrain)) # quadratic regression
+(lm.fit3 <- lm(mpg~poly(horsepower,3), data = AutoTrain)) # cubic regression
+```
+
+Pot the fits
+```{r}
+plot(mpg~horsepower, data = AutoTrain)
+abline(lm.fit$coefficients, col="blue4") # plot linear fit
+
+x <- with(Auto, seq(min(horsepower), max(horsepower), length.out = 2000)) # define x values to plot polynomial fits
+
+y2 <- predict(lm.fit2, newdata = data.frame(horsepower=x)) # corresponding predicted values
+lines(x, y2, col = "red4")
+
+y3 <- predict(lm.fit3, newdata = data.frame(horsepower = x)) # corresponding predicted values
+lines(x, y3, col = "green4")
+```
+
+Looking at the plots, I think the quadratic (red line) will evaluate the best because it turns upwards less as horsepower increases.
+
+## Calculate the test MSEs of the 3 models (mean of squared errors on test set)
+```{r}
+(MSE <- mean((mpg-predict(lm.fit,Auto))[-train]^2)) 
+(MSE2 <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)) 
+(MSE3 <- mean((mpg-predict(lm.fit3,Auto))[-train]^2))
+```
+I was right that fit2 is the best.
+
+## Resample with a different training set
+To get a different training set, we change the seed.
+
+```{r}
+set.seed(2)
+(train=sample(nrow(Auto),nrow(Auto)/2)) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+AutoTrain <- Auto[train,] # training data 
+AutoTest <- Auto[-train,] # test data
+
+(lm.fit = lm(mpg~horsepower,data=AutoTrain)) # linear regression
+(lm.fit2 = lm(mpg~poly(horsepower,2),data=AutoTrain)) # quadratic regression
+(lm.fit3=lm(mpg~poly(horsepower,3),data=Auto,subset=train)) # cubic regression
+
+(MSE <- mean((mpg-predict(lm.fit,Auto))[-train]^2)) 
+(MSE2 <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)) 
+(MSE3 <- mean((mpg-predict(lm.fit3,Auto))[-train]^2))
+
+```
+
+```{r}
+set.seed(3)
+(train=sample(nrow(Auto),nrow(Auto)/2)) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+AutoTrain <- Auto[train,] # training data 
+AutoTest <- Auto[-train,] # test data
+
+(lm.fit = lm(mpg~horsepower,data=AutoTrain)) # linear regression
+(lm.fit2 = lm(mpg~poly(horsepower,2),data=AutoTrain)) # quadratic regression
+(lm.fit3=lm(mpg~poly(horsepower,3),data=Auto,subset=train)) # cubic regression
+
+(MSE <- mean((mpg-predict(lm.fit,Auto))[-train]^2)) 
+(MSE2 <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)) 
+(MSE3 <- mean((mpg-predict(lm.fit3,Auto))[-train]^2))
+
+```
+
+```{r}
+set.seed(4)
+(train=sample(nrow(Auto),nrow(Auto)/2)) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+AutoTrain <- Auto[train,] # training data 
+AutoTest <- Auto[-train,] # test data
+
+(lm.fit = lm(mpg~horsepower,data=AutoTrain)) # linear regression
+(lm.fit2 = lm(mpg~poly(horsepower,2),data=AutoTrain)) # quadratic regression
+(lm.fit3=lm(mpg~poly(horsepower,3),data=Auto,subset=train)) # cubic regression
+
+(MSE <- mean((mpg-predict(lm.fit,Auto))[-train]^2)) 
+(MSE2 <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)) 
+(MSE3 <- mean((mpg-predict(lm.fit3,Auto))[-train]^2))
+
+```
+
+```{r}
+set.seed(5)
+(train=sample(nrow(Auto),nrow(Auto)/2)) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+AutoTrain <- Auto[train,] # training data 
+AutoTest <- Auto[-train,] # test data
+
+(lm.fit = lm(mpg~horsepower,data=AutoTrain)) # linear regression
+(lm.fit2 = lm(mpg~poly(horsepower,2),data=AutoTrain)) # quadratic regression
+(lm.fit3=lm(mpg~poly(horsepower,3),data=Auto,subset=train)) # cubic regression
+
+(MSE <- mean((mpg-predict(lm.fit,Auto))[-train]^2)) 
+(MSE2 <- mean((mpg-predict(lm.fit2,Auto))[-train]^2)) 
+(MSE3 <- mean((mpg-predict(lm.fit3,Auto))[-train]^2))
+
+```
+
+fit2 and 3 were always close, and it wasn't the case that fit2 always won.
+
+# Exercise 1.1
+
+Now lets draw a nice graph that compares the results with different training data sets
+
+```{r}
+  # Draw graph for 1 training sample
+
+  MSE <- rep(0,10) # initialising the MSE vector (we will need it below when we add )
+  
+  set.seed(1) # initialize the randomizer with a different number
+  train <- sample(nrow(Auto),nrow(Auto)/2) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+  AutoTrain <- Auto[train,] # training data 
+  AutoTest <- Auto[-train,] # test data
+  for (i in 1:10){
+    lm.fit=lm(mpg~poly(horsepower,i),data=AutoTrain)
+    MSE[i] <- mean((mpg-predict(lm.fit,Auto))[-train]^2)
+  }
+  
+  x <- seq(1,10,1)
+  plot(MSE~x, col=rainbow(1)[1], ylim=c(-2,30))
+  lines(MSE~x, col=rainbow(1)[1])
+
+  # Add graphs for different training samples
+  for (j in 2:10){
+    set.seed(j) # initialize the randomizer with different numbers
+    train <- sample(nrow(Auto),nrow(Auto)/2) # generate indices of a training data set by random sampling half of the observation indices of Auto 
+    AutoTrain <- Auto[train,] # training data 
+    AutoTest <- Auto[-train,] # test data
+    for (i in 1:10){
+      lm.fit=lm(mpg~poly(horsepower,i),data=AutoTrain)
+      MSE[i] <- mean((mpg-predict(lm.fit,Auto))[-train]^2)
+  }
+  
+  points(MSE~x, col=rainbow(j)[j]) # add to the previous plot
+  lines(MSE~x, col=rainbow(j)[j])
+  
+}
+```
+
+# Validation Set Approach (VSA)
+
+*Advantages*
+1.  Simple
+2.  Easy to implement
+
+*Disadvantages*
+*1.  High varaince (low stability)* on some data sets.
+*2.  High bias* on some data sets: since the training data is only a part of our sample, the VSA tends to overestimate the test error. We would prefer to train our model on the whole sample because statistical methods tend to perorm better the more observations they can use to learn.
+
+# Exercise 2 - Leave-One_out Cross-Validation (LOOCV)
+
+The LOOCV estimate can be automatically computed for any generalized linear model using the glm() together with the cv.glm() function. We‘ve used the glm() before for logistic regression by passing in the family="binomial" argument. But if we use glm() to fit a model without passing in the family argument, then it performs linear regression, just like the lm() function. 
+
+```{r}
+glm.fit <- glm(mpg~horsepower, data=Auto)
+coef(glm.fit)
+
+lm.fit <- lm(mpg~horsepower, data = Auto)
+coef(lm.fit)
+```
+Both give the same values
+
+Without speciying "family" as a parameter, glm() falls back to linear regression.
+We use it here because it comes with a function for cross-validation.
+```{r}
+glm.fit <- glm(mpg~horsepower, data = Auto)
+
+cv.err <- cv.glm(Auto,glm.fit) # computing the LOOCV prediction error. If we don't set the parameter K, cv.glm defaults to LOOCV
+cv.err$delta[1] # the estimate for the test error is stored in delta[1]
+```
+
+Now we calculate the LOOC test error for polynomial regression models of degree 1, ..., 10.
+It takes a bit to evaluate.
+```{r}
+cv.error <- rep(0,10) # initialising the LOOCV error vector
+for (i in 1:10){
+  glm.fit <- glm(mpg~poly(horsepower,i), data = Auto)
+  cv.error[i] <- cv.glm(Auto,glm.fit)$delta[1]
+}
+cv.error
+```
+
+Plot the results
+```{r}
+x<- seq(1,10,1)
+plot(cv.error~x, col="blue3")
+lines(cv.error~x, col="blue3")
+```
+
