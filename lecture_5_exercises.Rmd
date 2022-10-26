@@ -187,7 +187,7 @@ coef(lm.fit)
 ```
 Both give the same values
 
-Without speciying "family" as a parameter, glm() falls back to linear regression.
+Without specifying "family" as a parameter, glm() falls back to linear regression.
 We use it here because it comes with a function for cross-validation.
 ```{r}
 glm.fit <- glm(mpg~horsepower, data = Auto)
@@ -199,7 +199,7 @@ cv.err$delta[1] # the estimate for the test error is stored in delta[1]
 Now we calculate the LOOC test error for polynomial regression models of degree 1, ..., 10.
 It takes a bit to evaluate.
 ```{r}
-cv.error <- rep(0,10) # initialising the LOOCV error vector
+cv.error <- rep(0,10) # initializing the LOOCV error vector
 for (i in 1:10){
   glm.fit <- glm(mpg~poly(horsepower,i), data = Auto)
   cv.error[i] <- cv.glm(Auto,glm.fit)$delta[1]
@@ -216,12 +216,14 @@ lines(cv.error~x, col="blue3")
 
 # k-Fold Cross-Validation
 
+# Exercise 3 
+
 ```{r}
 set.seed(17)
 ```
 
-Now we calculate the k-fld CV test error for polynomial regression models of degree 1,...,10.
-Notice that the compution time is much shorter than that of LOOCV.
+Now we calculate the k-fold CV test error for polynomial regression models of degree 1,...,10.
+Notice that the computation time is much shorter than that of LOOCV.
 ```{r}
 cv.error.10=rep(0,10)
 for (i in 1:10){
@@ -235,3 +237,22 @@ Plot the results
 plot(cv.error.10~x, col="blue")
 lines(cv.error.10~x, col="blue")
 ```
+
+# Exercise 3.1
+
+Add graphs for different training samples
+```{r}
+for (j in 2:5){
+  set.seed(j) # initialize the randomizer with different numbers
+  for (i in 1:10){
+    glm.fit=glm(mpg~poly(horsepower,i),data=Auto)
+    cv.error.10[i]=cv.glm(Auto, glm.fit, K=19)$delta[1] # Settling K=10 means 10-fold CD
+  }
+  plot(cv.error.10~x, col=rainbow(j)[j])
+  lines(cv.error.10~x, col=rainbow(j)[j])
+}
+
+
+
+```
+
