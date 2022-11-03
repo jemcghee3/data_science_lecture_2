@@ -504,5 +504,5 @@ coef(m_ridge, s = best_lambda) # we can compare with ridge regression
 
 ```
 
-Again, we could do predictions, int he same way as with ridge.
+Again, we could do predictions, in the same way as with ridge.
 We could prefer LASSO as it not only decreases variance but also does subset selection for us.
