@@ -480,3 +480,29 @@ ridge.pred <- predict(m_ridge.Train, newx = predictors.Test, s = best_lambda) # 
           
 
 ```
+
+# LASSO Regression
+
+```{r}
+m_LASSO <- glmnet(predictors, outputs, alpha = 1)
+
+dim(coef(m_LASSO))
+```
+
+We only have 71 lines because glmnet has a stop criterion. See help
+
+```{r}
+m_LASSO # we see that some of the coefficients are set to 0
+plot(m_LASSO, label = TRUE)
+(cv_LASSO <- cv.glmnet(predictors, outputs, alpha = 1))
+plot(cv_LASSO)
+(best_lambda_LASSO <- cv_LASSO$lambda.min) #best lambda is very small, but lambda 1se is considerably larger
+coef(m_LASSO, s = best_lambda_LASSO) # for small lambda almost all coefficients are included
+coef(m_LASSO, s = cv_LASSO$lambda.1se) # We can try again with lambda.1se
+coef(m_ridge, s = best_lambda) # we can compare with ridge regression
+
+
+```
+
+Again, we could do predictions, int he same way as with ridge.
+We could prefer LASSO as it not only decreases variance but also does subset selection for us.
