@@ -1,0 +1,270 @@
+---
+title: "Decision Trees"
+output: html_notebook
+---
+
+# Exercise 1 - Explore the Hiters data
+
+```{r}
+library(tree)
+library(ISLR)
+library(ggplot2)
+```
+get rid of old stuff
+```{r}
+rm(list = ls())
+par(mfrow = c(1,1)) # set plotting window to default
+```
+
+# Regression trees
+
+```{r}
+data("Hitters") # In the tree package
+?Hitters
+head(Hitters)
+```
+
+Remove incomplete observations
+
+
+```{r}
+sum(is.na(Hitters))
+Hitters <- na.omit(Hitters)
+```
+Salary is our target variable
+We log-transfoorm it so that its distribution has more of a typical bell-shape.
+We need to remember later on that Salary is logarithmized!
+```{r}
+hist(Hitters$Salary)
+Hitters$Salary <- log(Hitters$Salary)
+hist(Hitters$Salary)
+```
+
+```{r}
+attach(Hitters)
+```
+
+# Exercise 2 - Fit a regression tree on the Hitters data (2 input variables)
+
+Sample 70% of the row indices for subsetting as training data.
+```{r}
+set.seed(1)
+trainHit <- sample(1:nrow(Hitters), 0.7*nrow(Hitters))
+Hitters.train <- Hitters[trainHit,]
+Hitters.test <- Hitters[-trainHit,]
+```
+
+Fir a regression tree to predict Salary from Years and Hits
+```{r}
+tree.salaryHitters <- tree(Salary ~ Years + Hits, data = Hitters)
+```
+
+tree() uses binary recursive partitioning.
+The split which maximizes the reduction in impurity is chosen.
+The data set is then split and the process is repeated.
+Splitting continues until the terminal nodes are too small or too few to be split.
+Tree growth is limited to a depth of 31 by the use of integers to label nodes.
+
+```{r}
+summary(tree.salaryHitters)
+```
+
+Output:
+-  There are 8 terminal nodes ("leaves") of the tree.
+-  Here "residual mean deviance" is just mean squared error (RMS)
+
+Plot the regression tree
+```{r}
+plot(tree.salaryHitters)
+text(tree.salaryHitters, cex = 0.75) # cex sets the character size
+```
+
+Plot the corresponding regions.
+
+simple plot
+```{r}
+plot(Hitters$Years, Hitters$Hits, col = 'steelblue', pch = 20, xlab = "Years", ylab = "Hits")
+partition.tree(tree.salaryHitters, ordvars = c("Years", "Hits"), add = TRUE, cex = 1)
+```
+
+Plot with salary value in color code
+Prepare Salary data for plot
+```{r}
+salary.deciles = quantile(Salary, 0:10/10)
+cut.salary = cut(Hitters$Salary, salary.deciles, include.lowest = TRUE)
+```
+
+Plot the point cloud and regions
+
+```{r}
+plot(Years, Hits, col = grey(10:2/11)[cut.salary], pch = 20, xlab = "Years", ylab = "Hits")
+partition.tree(tree.salaryHitters, ordvars = c("Years", "Hits"), add = TRUE, cex = 1)
+
+```
+
+```{r}
+
+tree.salaryHitters
+```
+node): node number
+split: split criterion, e.g. Thal: normal, or Ca < 0.5
+n: number of observations in that branch
+deviance (the smaller the better)
+yval: overall prediction for th ebranch (mean value Yes or No)
+(ybrob): the fraction of observations in that branch that take on values of (Yes No)
+* denotes terminal node
+
+
+## Fit a regression tree on the Hitters data (all input variables)
+
+```{r}
+tree.salaryHitters <- tree(Salary ~ .-Salary, data = Hitters)
+summary(tree.salaryHitters)
+```
+
+Plot the regression tree
+```{r}
+plot(tree.salaryHitters)
+text(tree.salaryHitters, cex = 0.75)
+```
+
+Use the tree to make predictions on the test set
+```{r}
+tree.salaryHitters.pred <- predict(tree.salaryHitters, newdata = Hitters.test)
+```
+
+Compare predictions of the regression tree with true values (visually)
+We plot the predictions against ground truth.
+A perfect prediction would give a line with intercept 0 and slope 1
+```{r}
+salaryHitters.test <- Hitters.test$Salary
+plot(tree.salaryHitters.pred,salaryHitters.test)
+abline (0,1)
+```
+
+Calculate the mean squared error on test data
+```{r}
+salaryHitters.test <- Hitters[-trainHit ,"Salary"]
+(tree.salaryHitters.MSE <- mean((tree.salaryHitters.pred - salaryHitters.test)^2))
+sqrt(tree.salaryHitters.MSE)
+```
+
+MSE = 0.189
+Square root of MSE = 0.383
+Test predictions are within around $383 of the true median logarithmized salary.
+
+# Exercise 3 - Pruning the regression tree (Hitters data)
+
+Cost-Complexity Pruning
+Goal: prune the trees to avoid high variance and overfitting.
+Positive effects:
+-  smaller *test" errors (due to less overfitting)
+-  higher interpretability (due to smaller trees)
+
+Use cross-validation to find the optimal parameter / alpha for cost-complexity pruning
+```{r}
+set.seed(3)
+?cv.tree
+cv.Hitters = cv.tree(tree.salaryHitters)
+```
+
+Runs a K-fold cross validation experiment to find the number of misclassifications as a function of the cost-complexity parameter /alpha
+
+
+```{r}
+cv.Hitters
+```
+
+$k: cost-complexity parameter (corresponds to /alpha)
+Notice that /alpha is increasing (corresponding tot he pruning sequence)
+$size: number of terminal nodes of each tree
+Notice that the size is decreasing (corresponding to the pruning sequence)
+$dev: *cross validation* error rate
+The full tree (with size 9, i.e. 9 terminal nodes) has the lowest cross-validation error
+
+Plot the cross-validation error-rate as a function of both size and /alpha (k):
+```{r}
+par(mfrow=c(1,2))
+plot(cv.Hitters$size, cv.Hitters$dev, type = "b") # type = "b= means plot both, points and lines
+plot(cv.Hitters$k, cv.Hitters$dev, type = "b")
+par(mfrow=c(1,1))
+```
+
+We do not need to prune the tree, since the full tree has minimal cross-validation error
+Yet, to show how to prune, here is the code
+```{r}
+prune.salaryHitters <- prune.tree(tree.salaryHitters, best = 6)
+```
+
+prune.tree determines the nested cost-complexity sequence
+best = 6 gets the 6-node tree in the cost-complexity sequence
+
+Plot the pruned regression tree
+```{r}
+plot(prune.salaryHitters)
+text(prune.salaryHitters, cex = 0.75)
+```
+
+# Exercise 4 - Fitting and pruning a classification tree (Heart data)
+
+Classification trees
+
+load and inspect the Heart data set
+This data contains a binary outcome HD for 303 patients who presented with chest pain.
+An outcome value of Yes indicates the presence of heart disease based on an angiographic test,
+while No means no heart disears. There are 13 predictors including Age, Sex, Chol (a cholestorol measurement) and other heart and lung function measurements
+
+```{r}
+Heart <- read.csv("./Heart.csv")
+attach(Heart)
+head(Heart)
+Heart <- Heart [,-1] # Remove the row identifier (we don't use it as a predictor)
+```
+
+The categorical varaibles need to be of type factor rather than character to work with tree()
+```{r}
+str(Heart)
+Heart$AHD = as.factor(Heart$AHD)
+Heart$ChestPain = as.factor(Heart$ChestPain)
+Heart$Thal = as.factor(Heart$Thal)
+plot(Heart$AHD)
+```
+
+Sample 70% of the row indixes for subsetting as training data
+
+```{r}
+set.seed(2)
+trainHeart <- sample(1:nrow(Heart), 0.7*nrow(Heart))
+Heart.train <- Heart[trainHeart,]
+Heart.test <- Heart[-trainHeart,]
+
+```
+
+Train classification tree on training data
+```{r}
+tree.AHDHeart <- tree(AHD ~ .-AHD, data =Heart.train)
+```
+
+```{r}
+plot(tree.AHDHeart)
+text(tree.AHDHeart, cex = 0.75, pretty = 0)
+```
+
+pretty = 0 instructs R to include the category names for any qualitative predictors, rather than simply displaying a letter for each category
+Ca is the most important indicator of heart disease.
+
+```{r}
+summary(tree.AHDHeart)
+```
+
+Deviance:
+For classification trees this is a scaled version of the entropy
+Measured as -2 * (sum_{m} sum{k} n_{mk} * log(p_{mk}))
+Here, n_{mk} is the number of observatiosn in the mth terminal node that belong to the kth class.
+A small deviance indicates a tree that provides a good fit to the training data
+Residual mean deviance:
+Deviance divided by (n - IT_{0})
+Misclassification error rate:
+training error rate is 8.5%
+
+
