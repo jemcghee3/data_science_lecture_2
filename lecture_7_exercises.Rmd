@@ -268,3 +268,104 @@ Misclassification error rate:
 training error rate is 8.5%
 
 
+```{r}
+tree.AHDHeart
+```
+
+node): node number
+split: split criterion e.g., Thal: normal or Ca < 0.5
+n: number of observations in that branch
+deviance (the smaller the better)
+yval: overall prediction for the branch (Yes or No)
+(ybrob): the fraction of observations in that branch that take on the values (Yes No)
+* denotes terminal node
+
+use classification trees to predict *test data*
+```{r}
+tree.AHDHeart.pred <- predict(tree.AHDHeart, Heart.test, type = "class")
+```
+
+Confusion table to determine classification error on test data
+```{r}
+(tree.AHDHeart.pred.ct <- table(tree.AHDHeart.pred, Heart.test$AHD))
+(tree.AHDHeart.pred.correct <- (tree.AHDHeart.pred.ct[1,1] + tree.AHDHeart.pred.ct[2,2]) / sum(tree.AHDHeart.pred.ct)) # portion incorrectly classified
+(tree.AHD.testError <- 1 - tree.AHDHeart.pred.correct) # test error
+```
+
+## Cost-complexity pruning
+Goal: prune trees to avoid high variance and overfitting
+Positive effects: 
+-  smaller *test* errors (due to less overfitting)
+-  higher interpretability (due to smaller trees)
+
+use cross-validation to find the optimal parameter alpha for cost-complexity pruning
+```{r}
+set.seed(3)
+cv.Heart = cv.tree(tree.AHDHeart, FUN = prune.misclass)
+```
+
+Runs a k-fold cross validation experiment to find the number of misclassifications as a function of the cost-complexity parameter alpha.
+"Fun = prune.misclass":
+  The *classification error rate* should guide the cross-validation and pruning process (as opposed to Gini index or entropy)
+  If FUN is not specified, deviance is used as default (which is a version of entropy)
+  --> Remember: If prediction accuracy is the goal, the error rate is preferable for pruning.
+  
+
+```{r}
+cv.Heart
+```
+
+$k: cost-complexity parameter (corresponds to alpha)
+Notice that /alpha is increasing (corresponding tot he pruning sequence)
+alpha = 0.75 gives the lowest cross-validation error
+$size: number of terminal nodes of each tree
+Notice that the size is decreasing (corresponding to the pruning sequence)
+$dev: *cross validation* error rate
+The full tree (with size 8, i.e. 8 terminal nodes) has the lowest cross-validation error
+
+plot the cross-validation error-rate as a function of both size and alpha
+```{r}
+par(mfrow=c(1,2))
+plot(cv.Heart$size, cv.Heart$dev, type = "b")
+plot(cv.Heart$k, cv.Heart$dev, type = "b")
+par(mfrow=c(1,1))
+```
+
+do the actual pruning
+```{r}
+prune.AHDHeart <- prune.misclass(tree.AHDHeart, best = 7)
+
+```
+
+prune.misclass:
+  is an abbreviation for prune.tree(method = "misclass") for use with cv.tree
+  Here, prune.tree determines the nested cost-complexity sequence
+best = 7: get hte 7 node tree in the cost-complexity sequence
+
+
+plot the pruned tree
+```{r}
+plot(prune.AHDHeart)
+text(prune.AHDHeart, pretty = 0)
+```
+
+use the pruned tree to predict test data
+```{r}
+prune.AHDHeart.pred <- predict(prune.AHDHeart, Heart.test, type = "class")
+
+```
+
+confusion table to determine classification error on test data
+```{r}
+(prune.AHDHeart.pred.ct <- table(prune.AHDHeart.pred, Heart.test$AHD))
+(prune.AHDHeart.correct <- (prune.AHDHeart.pred.ct[1,1] + prune.AHDHeart.pred.ct[2,2]) / sum(prune.AHDHeart.pred.ct))
+(prune.AHDHeart.testError <- 1 - prune.AHDHeart.correct)
+```
+
+Compare with test error of unpruned tree
+```{r}
+tree.AHD.testError
+```
+Smaller error with pruning!
+
+

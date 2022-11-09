@@ -292,7 +292,7 @@ Compare all 4 metrics (AdjR2, Cp, BIC, Ccv-error) of all 3 models
 data.frame("predictors"= c(4,6,7), "cv-err"=c(cv.err.glm4$delta[1], cv.err.glm6$delta[1], cv.err.glm7$delta[1]), "adjR2"=c(sets_summary$adjr2[4], sets_summary$adjr2[6], sets_summary$adjr2[7]), "Cp"=c(sets_summary$cp[4], sets_summary$cp[6], sets_summary$cp[7]), "BIC"=c(sets_summary$bic[4], sets_summary$bic[6], sets_summary$bic[7]))
 ```
 We would prefer to use a model with minimal cv.error, so we may choose model 7.
-Yet, the predictors Rating, Age and Gender are nor highly significant.
+Yet, the predictors Rating, Age and Gender are not highly significant.
 Especially if there are additional (domain) reasons (e.g. interpretability) to favor smaller models, 
 we might prefer to choose model 4.
 
