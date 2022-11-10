@@ -368,4 +368,122 @@ tree.AHD.testError
 ```
 Smaller error with pruning!
 
+# Exercise 5 - Bagged Trees
 
+We apply bagging and random forest on Boston data set using the randomForest library in R.
+The exact results may depend on the version of R and of randomForest
+Recall that bagging is just a special version of random forest with m = p.
+
+```{r}
+library(MASS)
+library(randomForest)
+```
+
+We will use the Boston dataset in the MASS library, which has housing values
+
+Setup a training seed and test set for the Boston data
+```{r}
+set.seed(1)
+train = sample(1:nrow(Boston), nrow(Boston)/2)
+boston.test = Boston[-train,"medv"]
+```
+
+Apply bagging using randomForest package in R
+```{r}
+bag.boston = randomForest(medv~., data=Boston, subset = train, mtry=13, importance = TRUE)
+```
+mtry = 13, meaning we should use all 13 predictors for each split of the tree
+hence, do bagging
+
+How well does the bagged model perform on the test set?
+```{r}
+yhat.bag = predict(bag.boston,newdata=Boston[-train,])
+plot(yhat.bag, boston.test)
+abline(0,1)
+mean((yhat.bag-boston.test)^2)
+```
+The test MSE associated with the bagged regression tree is 23.46
+That is almost half that obtained using an optimally pruned single tree
+(investigate later)
+
+Exercise: Change the number of trees grown by randomForest() using the ntree argument
+For example, what happens when we go from 13 to 25?
+
+# Exercise 6 - Random Forest
+Growing a random forest proceeds in exactly the same way, except that we use a smaller value of the mtry argument.
+By default, randomForest uses p/3 variables when building a random forest of regression trees and sqrt(p) variables when building a random forest of classification trees.
+
+Building a random forest on the same data set using mtry = 6
+Comment on the difference from the test MSE from using the random forest compared to bagging.
+
+```{r}
+set.seed(1)
+rf.boston=randomForest(medv~ ., data = Boston, subset = train, mtry = 6, importance = TRUE)
+yhat.rf = predict(rf.boston, newdata = Boston[-train,])
+mean((yhat.rf-boston.test)^2)
+```
+We see that the MSE for the random forest is 19.62, which is 25% lower than bagging
+
+Investigate variable importance
+```{r}
+importance(rf.boston)
+```
+Two measures of variable importance are reported:
+1.  The first based on the mean *decrease in accuracy* in predictions on the out of bag samples when a given variable is excluded from the model.
+2.  The second is a measure of the total *decrease in node impurity* that results from splits over that variable, averaged over all trees
+
+```{r}
+varImpPlot(rf.boston)
+```
+The results indicate that across all of the trees considered in the random forest, the wealth level of the community (lstat) and the house size (rm) are by far the two most important variabls for median house price (which makes sense)
+
+# Exercise 7 - Boosted Tree
+
+```{r}
+library(gbm)
+```
+We use the gbm package and within it the gbm() function to fit boosted regression trees to the Boston data set.
+
+Perform boosting on the training data set, treating this as a regression problem.
+
+```{r}
+set.seed(1)
+boost.boston = gbm(medv ~ ., data = Boston[train,], distribution = "gaussian", n.trees = 5000, interaction.depth = 4)
+```
+We run gbm() with the option distribution = "gaussian" since this is a regression problem.
+if it were a binary classification problem, we would use distribution = "bernoulli"
+"interaction.depth" refers to the maximum depth of variable interactions.
+1 implies an additive model
+2 implies a model with 2-way interactions, etc.
+
+```{r}
+summary(boost.boston)
+```
+We see that lstat and rm are by far the most important variables (again)
+
+Produce partial dependence plots for these two variables (lstat and rm)
+```{r}
+par(mfrow=c(1,2))
+plot(boost.boston, i = "rm")
+plot(boost.boston, i = "lstat")
+par(mfrow=c(1,1))
+```
+These plots illustrate the marginal effect of the selected variables on the response after integrating out the other variables.
+i.e., for every value of the selected variable, we calculate the predicted response for every combination of vallues of the other variables. We then average ("integrate out") over all these predicted responses. We do that for each value of the selected variable, which gives the graph.
+As we might expect, median house prices are increasing with rm and decreasing with lstat.
+
+Now use the boosted model to predict medv on the test set. Report the MSE
+```{r}
+yhat.boost=predict(boost.boston, newdata=Boston[-train,], n.trees=5000)
+mean((yhat.boost-boston.test)^2)
+```
+
+The test MSE is 18.847, similar to random forest but lower than bagging.
+
+What happens if we vary the shrinkage parameter from its default of 0.001 to 0.2? Report the test MSE.
+```{r}
+boost.boston = gbm(medv ~ ., data = Boston[train,], distribution = "gaussian", n.trees = 5000, interaction.depth = 4, shrinkage = 0.2, verbose = F)
+yhat.boost=predict(boost.boston, newdata=Boston[-train,], n.trees=5000)
+mean((yhat.boost-boston.test)^2)
+```
+In this case, using lambda = 0.2 leads to a slightly lower test MSE than lambda = 0.001.
