@@ -14,7 +14,7 @@
 ### LOAD LIBRARIES - install with:
 #install.packages(c("kohonen", "dummies", "ggplot2", "maptools", "sp", "reshape2", "rgeos", "rgdal"))
 library(kohonen)
-library(dummies)
+#library(dummies)
 library(ggplot2)
 library(rgdal)
 library(sp)
